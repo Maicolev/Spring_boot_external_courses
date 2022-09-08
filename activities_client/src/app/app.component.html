@@ -1,0 +1,71 @@
+<div class="container py-5">
+
+    <div class="rounded shadow p-5 d-flex">
+        <img src="\assets\tasks-image.svg" alt="" width="250">
+        <div>
+            <h3 class="text-primary">Welcome to Activities</h3>
+            <h5 class="text-secondary">
+                With this application you can consult, create and delete your tasks
+            </h5>
+            
+            <hr>
+
+            <p class="text-muted">
+                This app was development with Spring Boot, Angular and MongoDB.
+                Images from unDraw
+            </p>
+            <p class="text-muted">
+                Images from unDraw.
+            </p>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <h3>My task list</h3>
+            <div class = "my-5"></div>
+
+            <div *ngFor="let task of tasks" class="card mb-3" >
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div class="fw-bold">{{task.name}}</div>
+                        <div class="text-muted">
+                            <i class="fa fa-edit cursor-pointer" title="Edit task" (click)="edit(task)"></i>
+                            <i class="fa fa-trash ms-2 cursor-pointer" title="Delete task" (click)="delete(task)"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <small class="text-success" *ngIf="task.complete; else noCompleted">
+                            <i class="fa fa-check-circle"></i> Complete
+                        </small>
+                        <ng-template #noCompleted>
+                            <small class="text-muted">
+                                <i class="fa fa-clock"></i> Pending
+                            </small>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <h3>{{task.id ? 'Edit' : 'New'}} task</h3>
+
+            <form class="mt-5" (ngSubmit)="save()">
+                <div class="mb-3 form-floating">
+                    <input id="name" type="text" placeholder="Name" class="form-control" name="name" [(ngModel)]="task.name" >
+                    <label for="name">Name</label>
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input id="completed" type="checkbox" class="form-check-input" name="completed" [(ngModel)]="task.complete" >
+                    <label for="completed" class="form-check-label">Finished</label>
+                </div>
+
+                <div class="text-end">
+                    <button class="btn btn-primary btn-lg">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
