@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/styless.css">
+    <script type="text/javascript" src="js/validations.js"></script>
+    <title>Servlets test</title>
+</head>
+<body>
+    <section>
+        <article>
+            <h1>Data registry form</h1>
+            <form name="form1" action="/servlets/servletTest" method="post"
+            onsubmit="return validateForm(this)">
+
+                <input type="hidden" name="hidden" value="hiddenValue">
+                <table>
+                    <tr>
+                        <th>User: (*)</th>
+                        <th> <input type="text" name="user" id="user"> </th>
+                    </tr>
+
+                    <tr>
+                        <th>Password: (*)</th>
+                        <th> <input type="password" name="password" id="password"> </th>
+                    </tr>
+
+                    <tr>
+                        <th>Technologies of interest: (*)</th>
+                        <th>
+                             <label>Java <input type="checkbox" name="technologies" id="java" value="java"> </label>
+                             <label>.Net <input type="checkbox" name="technologies" id=".net" value=".net"> </label>
+                             <label>Php <input type="checkbox" name="technologies" id="php" value="php"> </label>
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <th>Gender: (*)</th>
+                        <th>
+                            <label>Female <input type="radio" name="radioGender" id="radioGenderF" value="female"> </label>
+                            <label>Male<input type="radio" name="radioGender" id="radioGenderM" value="male"> </label>
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <th>Occupation: (*)</th>
+                        <th>
+                            <select name="occupation" id="occupation">
+                                <option value="none">Select occupation</option>
+                                <optgroup label="Best occupations">
+                                    <option value="engineer">Engineer</option>
+                                </optgroup>
+                                <optgroup label="Public occupations">
+                                    <option value="lawyer">Lawyer</option>
+                                    <option value="judge">Judge</option>
+                                    <option value="accountant">Accountant</option>
+                                </optgroup>
+                                <optgroup label="Health">
+                                    <option value="doctor">Doctor</option>
+                                    <option value="nurse">Nurse</option>
+                                    <option value="nutritionist">Nutritionist</option>
+                                </optgroup>
+                            </select>
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <th>Favorite music:</th>
+                        <th>
+                            <select name="favoriteMusic" id="favoriteMusic" size="4" multiple>
+                                <option value="none">Select favorite music</option>
+                                <option value="pop">Pop</option>
+                                <option value="rock">Rock</option>
+                                <option value="metal">Metal</option>
+                                <option value="salsa">Salsa</option>
+                                <option value="electronic">Electronic</option>
+                                <option value="reggaeton">Reggaeton</option>
+                            </select>
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <th>Comments:</th>
+                        <th> <textarea name="comments" rows="2" cols="19"> </textarea> </th>
+                    </tr>
+
+                    <tr>
+                        <th> <button type="reset">Clear</button> </th>
+                        <th> <button type="submit">Send</button> </th>
+                    </tr>
+                </table>
+            </form>
+        </article>
+    </section>
+</body>
+</html>
