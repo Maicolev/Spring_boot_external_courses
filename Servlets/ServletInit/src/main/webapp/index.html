@@ -14,40 +14,40 @@
     <article>
         <h1>Data registry form</h1>
         <form name="form1" action="/ServletInit/servlet" method="post"
-              onsubmit="return validateForm(this)">
+              onsubmit="return validateForm(tdis)">
 
             <input type="hidden" name="hidden" value="hiddenValue">
-            <table>
+            <table widtd="200" id="column" >
                 <tr>
-                    <th>User: (*)</th>
-                    <th> <input type="text" name="user" id="user"> </th>
+                    <td class="only-column">User: (*)</td>
+                    <td> <input type="text" name="user" id="user"> </td>
                 </tr>
 
                 <tr>
-                    <th>Password: (*)</th>
-                    <th> <input type="password" name="password" id="password"> </th>
+                    <td class="only-column">Password: (*)</td>
+                    <td> <input type="password" name="password" id="password"> </td>
                 </tr>
 
                 <tr>
-                    <th>Technologies of interest: (*)</th>
-                    <th>
+                    <td class="only-column">Technologies of interest: (*)</td>
+                    <td>
                         <label>Java <input type="checkbox" name="technologies" id="java" value="java"> </label>
                         <label>.Net <input type="checkbox" name="technologies" id=".net" value=".net"> </label>
                         <label>Php <input type="checkbox" name="technologies" id="php" value="php"> </label>
-                    </th>
+                    </td>
                 </tr>
 
                 <tr>
-                    <th>Gender: (*)</th>
-                    <th>
+                    <td class="only-column">Gender: (*)</td>
+                    <td>
                         <label>Female <input type="radio" name="radioGender" id="radioGenderF" value="female"> </label>
                         <label>Male<input type="radio" name="radioGender" id="radioGenderM" value="male"> </label>
-                    </th>
+                    </td>
                 </tr>
 
                 <tr>
-                    <th>Occupation: (*)</th>
-                    <th>
+                    <td class="only-column">Occupation: (*)</td>
+                    <td>
                         <select name="occupation" id="occupation">
                             <option value="none">Select occupation</option>
                             <optgroup label="Best occupations">
@@ -58,18 +58,18 @@
                                 <option value="judge">Judge</option>
                                 <option value="accountant">Accountant</option>
                             </optgroup>
-                            <optgroup label="Health">
+                            <optgroup label="Healtd">
                                 <option value="doctor">Doctor</option>
                                 <option value="nurse">Nurse</option>
                                 <option value="nutritionist">Nutritionist</option>
                             </optgroup>
                         </select>
-                    </th>
+                    </td>
                 </tr>
 
                 <tr>
-                    <th>Favorite music:</th>
-                    <th>
+                    <td class="only-column">Favorite music:</td>
+                    <td>
                         <select name="favoriteMusic" id="favoriteMusic" size="4" multiple>
                             <option value="none">Select favorite music</option>
                             <option value="pop">Pop</option>
@@ -79,17 +79,17 @@
                             <option value="electronic">Electronic</option>
                             <option value="reggaeton">Reggaeton</option>
                         </select>
-                    </th>
+                    </td>
                 </tr>
 
                 <tr>
-                    <th>Comments:</th>
-                    <th> <textarea name="comments" rows="2" cols="19"> </textarea> </th>
+                    <td class="only-column">Comments:</td>
+                    <td> <textarea name="comments" rows="2" cols="19"> </textarea> </td>
                 </tr>
 
-                <tr>
-                    <th> <button type="reset">Clear</button> </th>
-                    <th> <button type="submit">Send</button> </th>
+                <tr style="text-align: center">
+                    <td> <button type="reset">Clear</button> </td>
+                    <td> <button type="submit">Send</button> </td>
                 </tr>
             </table>
         </form>
