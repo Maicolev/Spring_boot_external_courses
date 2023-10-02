@@ -2,6 +2,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 
 @WebServlet("/servlet")
 public class Servlet extends HttpServlet{
@@ -107,6 +108,43 @@ public class Servlet extends HttpServlet{
         out.print("</table>");
         out.print("</body>");
         out.print("</html>");
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+
+        //get info headers - other data
+        String methodHttp = request.getMethod();
+        String uri = request.getRequestURI();
+
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<title>Headers HTTP </title>");
+        out.println("</head>");
+        out.println("<body>");
+        out.println("<h1>Headers HTTP</h1>");
+        out.println("<br>");
+        out.println("Metodo HTTP: "+ methodHttp);
+
+        out.println("<br>");
+        out.println("Uri: " + uri);
+
+        //all headers available
+        out.println("<br>");
+        out.println("<br>");
+        Enumeration headers = request.getHeaderNames();
+
+        while(headers.hasMoreElements()){
+            String headerName = (String) headers.nextElement();
+            out.println("<b>" + headerName + "</b>");
+            out.println(request.getHeaders(headerName));
+            out.println("<br>");
+        }
+
+        out.println("</body>");
+        out.println("</html>");
+
     }
 }
 
