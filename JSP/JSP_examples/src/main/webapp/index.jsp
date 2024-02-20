@@ -12,6 +12,7 @@
             <li> ${"Hi world with expression language (EL)"} </li>
             <li> <%= "Hi world with expressions" %> </li>
             <li> <c:out value = "Hi world with JSTL"/></li>
+            <li> <a href="expressions/expressions.jsp"> JSP expresiones</a> </li>
         </UL>
     </body>
 </html>
