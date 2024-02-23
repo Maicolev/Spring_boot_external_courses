@@ -13,6 +13,7 @@
             <li> <%= "Hi world with expressions" %> </li>
             <li> <c:out value = "Hi world with JSTL"/></li>
             <li> <a href="expressions/expressions.jsp"> JSP expresiones</a> </li>
+            <li> <a href="scriptlest/scriptlest.jsp"> JSP scriptlest</a> </li>
         </UL>
     </body>
 </html>
