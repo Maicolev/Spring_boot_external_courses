@@ -14,6 +14,7 @@
             <li> <c:out value = "Hi world with JSTL"/></li>
             <li> <a href="expressions/expressions.jsp"> JSP expresiones</a> </li>
             <li> <a href="scriptlest/scriptlest.jsp"> JSP scriptlest</a> </li>
+            <li> <a href="declarations/declarations.jsp"> JSP declarations</a> </li>
         </UL>
     </body>
 </html>
