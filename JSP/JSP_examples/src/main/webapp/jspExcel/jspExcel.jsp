@@ -1,8 +1,9 @@
+<%@page errorPage="../errors/errorManagement.jsp" %>
 <%@page import="utilities.Conversions, java.util.Date"%>
 <%@page contentType="application/vnd.ms-excel" %>
 <%
     String fileName = "report.xls";
-    response.setHeader("Content-Disposition", "attatchement; filename =" + fileName);
+    response.setHeader("Content-Disposition", "inline; filename =" + fileName);
 %>
 
 <!DOCTYPE html>
