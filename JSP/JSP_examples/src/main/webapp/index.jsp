@@ -16,6 +16,7 @@
             <li> <a href="scriptlest/scriptlest.jsp"> JSP scriptlest</a> </li>
             <li> <a href="declarations/declarations.jsp"> JSP declarations</a> </li>
             <li> <a href="jspx/jspx.jspx"> JSPx examples</a> </li>
+            <li> <a href="jspExcel/jspExcel.jsp">Excel with JSP</a> </li>
         </UL>
     </body>
 </html>
