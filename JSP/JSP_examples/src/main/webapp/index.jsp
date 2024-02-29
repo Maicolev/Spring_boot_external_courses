@@ -17,6 +17,8 @@
             <li> <a href="declarations/declarations.jsp"> JSP declarations</a> </li>
             <li> <a href="jspx/jspx.jspx"> JSPx examples</a> </li>
             <li> <a href="jspExcel/jspExcel.jsp">Excel with JSP</a> </li>
+            <li> <a href="staticJsp/index.jsp">Static JSP</a> </li>
+            <li> <a href="dynamicJsp/index.jsp">Dynamic JSP</a> </li>
         </UL>
     </body>
 </html>
