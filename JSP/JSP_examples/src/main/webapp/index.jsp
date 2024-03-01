@@ -19,6 +19,7 @@
             <li> <a href="jspExcel/jspExcel.jsp">Excel with JSP</a> </li>
             <li> <a href="staticJsp/index.jsp">Static JSP</a> </li>
             <li> <a href="dynamicJsp/index.jsp">Dynamic JSP</a> </li>
+            <li> <a href="javaBeans/index.jsp">JavaBeans management with JSP</a> </li>
         </UL>
     </body>
 </html>
