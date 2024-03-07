@@ -22,7 +22,8 @@
             <li> <a href="javaBeans/index.jsp">JavaBeans management with JSP</a> </li>
             <li> <a href="EL/index.jsp">Expressions language with JSP</a> </li>
             <li> <a href="jstl/index.jsp?option=6">Jstl</a> </li>
-
+            <li> <a href="mvc1">MVC 1</a> </li>
+            <li> <a href="mvc2/index.jsp">MVC 2</a> </li>
         </UL>
     </body>
 </html>
