@@ -4,6 +4,13 @@ public class Rectangle{
     private int base;
     private int height;
 
+    public Rectangle(){}
+
+    public Rectangle(int base, int height){
+        this.base = base;
+        this.height = height;
+    }
+
     public int getBase() {
         return base;
     }

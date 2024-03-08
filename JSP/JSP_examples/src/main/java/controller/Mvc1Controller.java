@@ -26,8 +26,6 @@ public class Mvc1Controller extends HttpServlet{
         rectangle.setHeight(7);
         request.setAttribute("rectangle", rectangle);
 
-        String route = request.getContextPath();
-        System.out.println(route + "/mvc1/index.jsp");
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/mvc1/index.jsp");
         requestDispatcher.forward(request, response);
     }
