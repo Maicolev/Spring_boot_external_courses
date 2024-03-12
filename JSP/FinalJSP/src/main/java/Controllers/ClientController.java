@@ -45,5 +45,8 @@ public class ClientController extends HttpServlet {
         else if(action.equals("update")){
             conection.updateClient(client);
         }
+        else if(action.equals("list")){
+            conection.listClient();
+        }
     }
 }

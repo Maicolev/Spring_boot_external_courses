@@ -5,11 +5,9 @@ import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 import Models.Client;
 import com.mongodb.MongoException;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.*;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Sorts;
 import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.InsertOneResult;
 import com.mongodb.client.result.UpdateResult;
@@ -17,6 +15,7 @@ import org.bson.codecs.configuration.CodecProvider;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.conversions.Bson;
+
 
 public class Conection{
 
@@ -87,6 +86,32 @@ public class Conection{
             } catch (MongoException me) {
                 System.err.println("Unable to delete due to an error: " + me);
             }
+            mongoClient.close();
+        }
+    }
+
+    public void listClient() {
+        CodecProvider pojoCodecProvider = PojoCodecProvider.builder().automatic(true).build();
+        CodecRegistry pojoCodecRegistry = fromRegistries(getDefaultCodecRegistry(), fromProviders(pojoCodecProvider));
+
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
+            MongoDatabase database = mongoClient.getDatabase("FinalJSP").withCodecRegistry(pojoCodecRegistry);
+            collection = database.getCollection("Clients", Client.class);
+            //Client client = collection.find(eq("title", "Back to the Future")).first();
+
+            System.out.println(collection.countDocuments());
+            MongoCursor<Client> cursor = collection.find()
+                    .sort(Sorts.descending("name"))
+                    .iterator();
+
+            try {
+                while(cursor.hasNext()) {
+                    System.out.println(cursor.next().toString());
+                }
+            } finally {
+                cursor.close();
+            }
+            //return collection;
             mongoClient.close();
         }
     }

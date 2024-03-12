@@ -72,4 +72,15 @@ public class Client {
         this.salary = salary;
     }
 
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", salary='" + salary + '\'' +
+                '}';
+    }
 }
