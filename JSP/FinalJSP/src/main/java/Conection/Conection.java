@@ -16,15 +16,19 @@ import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.conversions.Bson;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Conection{
 
     private static MongoCollection<Client> collection;
 
     private String uri = "mongodb://localhost:27017";
-    public void removeClient(Client client) {
+    public String removeClient(Client client) {
         CodecProvider pojoCodecProvider = PojoCodecProvider.builder().automatic(true).build();
         CodecRegistry pojoCodecRegistry = fromRegistries(getDefaultCodecRegistry(), fromProviders(pojoCodecProvider));
+        String message = "";
 
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("FinalJSP").withCodecRegistry(pojoCodecRegistry);
@@ -36,18 +40,20 @@ public class Conection{
             try {
                 // Deletes the first document that has a "title" value of "The Garbage Pail Kids Movie"
                 DeleteResult result = collection.deleteOne(filter);
-                System.out.println("Deleted document count: " + result.getDeletedCount());
+                message = "Deleted document count: " + result.getDeletedCount();
                 // Prints a message if any exceptions occur during the operation
             } catch (MongoException me) {
-                System.err.println("Unable to delete due to an error: " + me);
+                message = "Unable to delete due to an error: " + me;
             }
             mongoClient.close();
         }
+        return message;
     }
 
-    public void addClient(Client client){
+    public String addClient(Client client){
         CodecProvider pojoCodecProvider = PojoCodecProvider.builder().automatic(true).build();
         CodecRegistry pojoCodecRegistry = fromRegistries(getDefaultCodecRegistry(), fromProviders(pojoCodecProvider));
+        String message = "";
 
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("FinalJSP").withCodecRegistry(pojoCodecRegistry);
@@ -58,18 +64,20 @@ public class Conection{
             try {
                 // Deletes the first document that has a "title" value of "The Garbage Pail Kids Movie"
                 InsertOneResult result = collection.insertOne(client);
-                System.out.println("Inserted document id: " + result.getInsertedId());
+                message = "Deleted document count: " + result.getInsertedId();
                 // Prints a message if any exceptions occur during the operation
             } catch (MongoException me) {
-                System.err.println("Unable to delete due to an error: " + me);
+               message = "Unable to delete due to an error: " + me;
             }
             mongoClient.close();
         }
+        return message;
     }
 
-    public void updateClient(Client client){
+    public String updateClient(Client client){
         CodecProvider pojoCodecProvider = PojoCodecProvider.builder().automatic(true).build();
         CodecRegistry pojoCodecRegistry = fromRegistries(getDefaultCodecRegistry(), fromProviders(pojoCodecProvider));
+        String message = "";
 
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("FinalJSP").withCodecRegistry(pojoCodecRegistry);
@@ -81,16 +89,18 @@ public class Conection{
             try {
                 // Deletes the first document that has a "title" value of "The Garbage Pail Kids Movie"
                 UpdateResult result = collection.replaceOne(filter,client);
-                System.out.println("Edited document id: " + result.getModifiedCount());
+                message = "Edited document id: " + result.getModifiedCount();
                 // Prints a message if any exceptions occur during the operation
             } catch (MongoException me) {
-                System.err.println("Unable to delete due to an error: " + me);
+                message = "Unable to delete due to an error: " + me;
             }
             mongoClient.close();
         }
+        return message;
     }
 
-    public void listClient() {
+    public List <Client> listClient() {
+        List <Client> list = new ArrayList();
         CodecProvider pojoCodecProvider = PojoCodecProvider.builder().automatic(true).build();
         CodecRegistry pojoCodecRegistry = fromRegistries(getDefaultCodecRegistry(), fromProviders(pojoCodecProvider));
 
@@ -99,21 +109,21 @@ public class Conection{
             collection = database.getCollection("Clients", Client.class);
             //Client client = collection.find(eq("title", "Back to the Future")).first();
 
-            System.out.println(collection.countDocuments());
             MongoCursor<Client> cursor = collection.find()
-                    .sort(Sorts.descending("name"))
+                    .sort(Sorts.ascending("_id"))
                     .iterator();
 
             try {
                 while(cursor.hasNext()) {
-                    System.out.println(cursor.next().toString());
+                    list.add(cursor.next());
+                    //System.out.println(cursor.next().toString());
                 }
             } finally {
                 cursor.close();
             }
-            //return collection;
             mongoClient.close();
         }
+        return list;
     }
 }
 

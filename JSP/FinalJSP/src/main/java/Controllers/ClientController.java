@@ -2,13 +2,16 @@ package Controllers;
 
 import Conection.Conection;
 import Models.Client;
+import com.mongodb.client.MongoCursor;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * List clients
@@ -29,24 +32,49 @@ public class ClientController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
-
-        //req.getParameter("id");
-        Client client = new Client(666, "NameEdit", "LastNameee", "Email", "34567", "100000");
-
-        System.out.print("doget method");
+        String message = "";
+        Client client = (Client) req.getAttribute("client");
+        //Client client = new Client(666, "Namesss", "LastNameee", "Email", "34567", 100000);
 
         if (action.equals("remove")){
-            conection.removeClient(client);
+            message = conection.removeClient(client);
+            req.setAttribute("message", message);
         }
         else if(action.equals("add")){
-            //Client client = new Client(666, "Nameee", "LastNameee", "Email", "34567", "100000");
-            conection.addClient(client);
+            message = conection.addClient(client);
+            req.setAttribute("message", message);
         }
         else if(action.equals("update")){
-            conection.updateClient(client);
+            message = conection.updateClient(client);
+            req.setAttribute("message", message);
         }
         else if(action.equals("list")){
-            conection.listClient();
+            //System.out.println("list in");
+
+            List<Client> list = conection.listClient();
+            req.setAttribute("clientList", list);
+
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/Views/clientList.jsp");
+            requestDispatcher.forward(req, resp);
+
+            //System.out.println("total Salary is:" + getTotalSalary());
+            //System.out.println("total clients are:" + getTotalClients());
         }
+    }
+
+    public List <Client> listClients(){
+        return conection.listClient();
+    }
+
+    public double getTotalSalary(){
+        double totalSalary = 0;
+        for( Client client : listClients() ){
+            totalSalary += client.getSalary();
+        }
+        return totalSalary;
+    }
+
+    public int getTotalClients(){
+        return listClients().size();
     }
 }

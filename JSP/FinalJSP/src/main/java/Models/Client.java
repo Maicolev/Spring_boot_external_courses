@@ -11,11 +11,11 @@ public class Client {
 
     private String phoneNumber;
 
-    private String salary;
+    private double salary;
 
     public Client(){}
 
-    public Client(int id, String name, String lastName, String email, String phoneNumber, String salary) {
+    public Client(int id, String name, String lastName, String email, String phoneNumber, double salary) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
@@ -64,11 +64,11 @@ public class Client {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getSalary() {
+    public double getSalary() {
         return salary;
     }
 
-    public void setSalary(String salary) {
+    public void setSalary(double salary) {
         this.salary = salary;
     }
 
