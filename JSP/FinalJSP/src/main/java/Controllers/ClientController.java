@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,41 +31,44 @@ public class ClientController extends HttpServlet {
      * This method process remove client
      */
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
         String message = "";
-        Client client = (Client) req.getAttribute("client");
-        //Client client = new Client(666, "Namesss", "LastNameee", "Email", "34567", 100000);
+        Client client = createClient(req);
 
         if (action.equals("remove")){
             message = conection.removeClient(client);
             req.setAttribute("message", message);
+            doGet(req,resp);
         }
         else if(action.equals("add")){
             message = conection.addClient(client);
             req.setAttribute("message", message);
+            doGet(req,resp);
         }
         else if(action.equals("update")){
             message = conection.updateClient(client);
             req.setAttribute("message", message);
+            //doGet(req,resp);
         }
-        else if(action.equals("list")){
-            //System.out.println("list in");
+    }
 
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String action = req.getParameter("action");
+       // if(action.equals("list")){
             List<Client> list = conection.listClient();
             req.setAttribute("clientList", list);
 
+            req.setAttribute("totalSalary", getTotalSalary());
+            req.setAttribute("totalClients", getTotalClients());
+
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/Views/clientList.jsp");
             requestDispatcher.forward(req, resp);
-
-            //System.out.println("total Salary is:" + getTotalSalary());
-            //System.out.println("total clients are:" + getTotalClients());
-        }
+     //   }
     }
 
-    public List <Client> listClients(){
-        return conection.listClient();
-    }
+    public List <Client> listClients(){return conection.listClient();}
 
     public double getTotalSalary(){
         double totalSalary = 0;
@@ -76,5 +80,34 @@ public class ClientController extends HttpServlet {
 
     public int getTotalClients(){
         return listClients().size();
+    }
+
+    public Client createClient(HttpServletRequest req){
+
+        String idUp = req.getParameter("idClientUpdate");
+        String idRe = req.getParameter("idClientRemove");
+
+        if (idRe == null && idUp == null){
+            int    id;
+            String name = req.getParameter("name");
+            String lastName = req.getParameter("lastName");
+            String email = req.getParameter("mail");
+            String phone = req.getParameter("phone");
+            double salary = Double.parseDouble(req.getParameter("salary"));
+
+            //get max id
+            List <Client> clients = conection.listClient();
+            id = (clients.isEmpty()) ? 1 : clients.get(clients.size()-1).getId() +1;
+
+            Client client = new Client(id, name, lastName, email, phone, salary);
+            return client;
+        }
+        else if (idRe != null){
+            return conection.findClientById(idRe);
+        }
+        else if (idUp != null) {
+            return conection.findClientById(idUp);
+        }
+        return null;
     }
 }

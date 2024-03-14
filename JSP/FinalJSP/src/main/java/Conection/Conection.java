@@ -64,7 +64,8 @@ public class Conection{
             try {
                 // Deletes the first document that has a "title" value of "The Garbage Pail Kids Movie"
                 InsertOneResult result = collection.insertOne(client);
-                message = "Deleted document count: " + result.getInsertedId();
+                int value = result.getInsertedId().asNumber().intValue();
+                message = "Add document id: " + value;
                 // Prints a message if any exceptions occur during the operation
             } catch (MongoException me) {
                message = "Unable to delete due to an error: " + me;
@@ -116,7 +117,6 @@ public class Conection{
             try {
                 while(cursor.hasNext()) {
                     list.add(cursor.next());
-                    //System.out.println(cursor.next().toString());
                 }
             } finally {
                 cursor.close();
@@ -124,6 +124,16 @@ public class Conection{
             mongoClient.close();
         }
         return list;
+    }
+
+    public Client findClientById(String id){
+        List <Client> clients = listClient();
+        for(Client client : clients){
+            if(Integer.parseInt(id) == (client.getId())){
+                return client;
+            }
+        }
+        return null;
     }
 }
 
