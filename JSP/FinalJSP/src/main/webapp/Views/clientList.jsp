@@ -34,7 +34,7 @@
                             <td> <%= client.getEmail() %> </td>
                             <td> <%= client.getPhoneNumber() %> </td>
                             <td> <%= client.getSalary() %> </td>
-                            <td> <form action="/FinalJSP/client?action=update" method="post"> <input hidden="hidden" type="text" name ="idClientUpdate" id="idClientUpdate" value="<%=client.getId()%>">  <input type="submit" value="Edit"/> </form> </td>
+                            <td> <form action="/FinalJSP/client?action=updateInit" method="post"> <input hidden="hidden" type="text" name ="idClientUpdate" id="idClientUpdate" value="<%=client.getId()%>">  <input type="submit" value="Edit"/> </form> </td>
                             <td> <form action="/FinalJSP/client?action=remove" method="post"> <input hidden="hidden" type="text" name ="idClientRemove" id="idClientRemove" value="<%=client.getId()%>">  <input type="submit" value="-"/> </form> </td>
                         </tr>
 

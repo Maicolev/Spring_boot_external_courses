@@ -46,10 +46,25 @@ public class ClientController extends HttpServlet {
             req.setAttribute("message", message);
             doGet(req,resp);
         }
-        else if(action.equals("update")){
+        else if(action.equals("updateInit")){
+
+            req.setAttribute("id", req.getParameter("idClientUpdate"));
+            req.setAttribute("name", client.getName());
+            req.setAttribute("lastName", client.getLastName());
+            req.setAttribute("mail", client.getEmail());
+            req.setAttribute("phone", client.getPhoneNumber());
+            req.setAttribute("salary", client.getSalary());
+
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/Views/updateClient.jsp");
+            requestDispatcher.forward(req, resp);
+        }
+        else if(action.equals("updateEnd")){
+
+            client.setId(Integer.parseInt(req.getParameter("id")));
+
             message = conection.updateClient(client);
             req.setAttribute("message", message);
-            //doGet(req,resp);
+            doGet(req,resp);
         }
     }
 
