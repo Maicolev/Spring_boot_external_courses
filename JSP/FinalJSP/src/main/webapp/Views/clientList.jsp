@@ -1,3 +1,6 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="en_US"/>
 <%@ page import="java.util.List" %>
 <%@ page import="Models.Client" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
@@ -8,7 +11,7 @@
 <html>
     <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <title>CLients</title>
+        <title>Clients</title>
     </head>
     <body>
         <main>
@@ -19,12 +22,14 @@
                 }
             %>
             <div class="row mb-3 text-center">
-                <div class="col-md-8 themed-grid-col bg-secondary text-white">
-                    <article>
-                        <section>
-                            <caption> Client list </caption>
-                                <table class="table table-bordered">
-                                    <thead class="table-dark">
+                <div class="col-md-8 themed-grid-col">
+                    <div class="card" style="">
+                        <div class="card-header">Client List</div>
+                        <div class="card-body">
+                            <article>
+                                <section>
+                                    <table class="table table-bordered">
+                                        <thead class="table-dark">
                                         <tr>
                                             <th>ID</th>
                                             <th>Name</th>
@@ -34,42 +39,56 @@
                                             <th>Edit</th>
                                             <th>Remove</th>
                                         </tr>
-                                    </thead>
-                                    <%
-                                        for(Client client : list){
-                                    %>
+                                        </thead>
+                                        <%
+                                            for(Client client : list){
+                                        %>
 
-                                    <tbody>
+                                        <tbody>
                                         <tr>
                                             <td> <%= client.getId() %> </td>
                                             <td> <%= client.getName() + " " + client.getLastName() %> </td>
                                             <td> <%= client.getEmail() %> </td>
                                             <td> <%= client.getPhoneNumber() %> </td>
-                                            <td> <%= client.getSalary() %> </td>
+                                            <td> <fmt:formatNumber value="<%= client.getSalary() %>" type="currency" /> </td>
                                             <td class="text-center"> <form action="/FinalJSP/client?action=updateInit" method="post"> <input hidden="hidden" type="text" name ="idClientUpdate" id="idClientUpdate" value="<%=client.getId()%>">  <input type="submit" class="btn btn-dark" value="Edit"/> </form> </td>
                                             <td class="text-center" > <form action="/FinalJSP/client?action=remove" method="post"> <input hidden="hidden" type="text" name ="idClientRemove" id="idClientRemove" value="<%=client.getId()%>">  <input type="submit" class="btn btn-danger" value="-"/> </form> </td>
                                         </tr>
-                                    </tbody>
+                                        </tbody>
 
-                                    <% } %>
-                                </table>
-                        </section>
-                    </article>
+                                        <% } %>
+                                    </table>
+                                </section>
+                            </article>
+                        </div>
+                    </div>
                 </div>
                 <div class="py-5 my-5 col-md-4 themed-grid-col">
                     <aside>
                         <div class="container text-center">
                             <div class="row row-cols-1">
-                                <section class="bg-secondary rounded-pill text-white">
-                                    Total salary: <%= request.getAttribute("totalSalary") %>
-                                </section>
+                                <div class="card text-bg-light mb-3" style="max-width: 18rem;">
+                                    <div class="card-header">Total salary</div>
+                                    <div class="card-body">
+                                        <section>
+                                            <h5> <%= request.getAttribute("totalSalary") %> </h5>
+                                        </section>
+                                    </div>
+                                </div>
 
-                                <section class="bg-secondary rounded-pill text-white">
-                                    Total clients: <%= request.getAttribute("totalClients") %>
-                                </section>
+                                <div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
+                                    <div class="card-header">Total clients</div>
+                                    <div class="card-body">
+                                        <section>
+                                            <h5> <%= request.getAttribute("totalClients") %> </h5>
+                                        </section>
+                                    </div>
+                                </div>
 
                                 <section>
-                                    <a href="Views/addClient.jsp"> + add client </a>
+                                    <!-- Views/addClient.jsp -->
+                                    <!-- <a href="#" data-toggle="modal" data-target="modalAddClient" > + add client </a> -->
+                                    <button class="btn btn-dark" data-bs-target="#addClientModal" data-bs-toggle="modal"> Add client</button>
                                 </section>
                             </div>
                         </div>
@@ -80,6 +99,10 @@
                     Back to home
                 </a>
             </div>
+
+            <jsp:include page="addClient.jsp"/>
+            <jsp:include page="updateClient.jsp"/>
+
         </main>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>

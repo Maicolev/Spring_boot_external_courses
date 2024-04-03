@@ -44,6 +44,7 @@ public class ClientController extends HttpServlet {
         else if(action.equals("add")){
             message = conection.addClient(client);
             req.setAttribute("message", message);
+            //resp.sendRedirect("client");
             doGet(req,resp);
         }
         else if(action.equals("updateInit")){
