@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+<head>
+    <title>Hi world JSF</title>
+</head>
+    <body>
+        <h:form>
+            <table>
+                <tr>
+                    <td> <h:outputLabel for="name" value="Name:"> </h:outputLabel> </td>
+                    <td> <h:inputText id="name" value="#{candidate.name}"/> </td>
+                    <td> <h:message for="name"> </h:message> </td>
+                </tr>
+            </table>
+        </h:form>
+    </body>
+</html>
