@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html" pageEncoding="utf-8"/>
+
+    <!-- declarations use -->
+    <jsp:declaration>
+        private int visitCount = 1;
+    </jsp:declaration>
+
+    <html>
+        <body>
+            <h1>JSPx document example</h1>
+
+            <!-- Text out example-->
+            <jsp:text>gretting by JSPx document</jsp:text>
+            <br></br>
+
+            <!-- JSPX expressions example -->
+            <jsp:expression>2*3</jsp:expression>
+
+            <!-- JSPX Scriptlet example -->
+            <jsp:scriptlet>
+                String applicationName = request.getContextPath();
+            </jsp:scriptlet>
+            Aplication Name: <jsp:expression> applicationName </jsp:expression>
+
+            <br/>
+            Visit number: <jsp:expression>this.visitCount</jsp:expression>
+
+        </body>
+    </html>
+
+
+</jsp:root>
