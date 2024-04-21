@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
 <head>
     <title>Hi world JSF</title>
 </head>
@@ -9,8 +10,20 @@
             <table>
                 <tr>
                     <td> <h:outputLabel for="name" value="Name:"> </h:outputLabel> </td>
-                    <td> <h:inputText id="name" value="#{candidate.name}"/> </td>
+                    <td> <h:inputText id="name" required="true" value="#{candidate.name}"/> </td>
                     <td> <h:message for="name"> </h:message> </td>
+                </tr>
+                <tr>
+                    <td> <h:outputLabel for="lastName" value="lastName:"> </h:outputLabel> </td>
+                    <td> <h:inputText id="lastName" required="true" value="#{candidate.lastName}"/> </td>
+                    <td> <h:message for="lastName"> </h:message> </td>
+                </tr>
+                <tr>
+                    <td> <h:outputLabel for="desiredSalary" value="desiredSalary:"> </h:outputLabel> </td>
+                    <td> <h:inputText id="desiredSalary" required="true" value="#{candidate.desiredSalary}">
+                            <f:validateLongRange minimum="500" maximum="5000" />
+                         </h:inputText> </td>
+                    <td> <h:message for="desiredSalary"> </h:message> </td>
                 </tr>
             </table>
             <h:commandButton action="#{vacantfrm.send}" value="Send"></h:commandButton>
