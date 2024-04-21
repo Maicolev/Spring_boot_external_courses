@@ -19,11 +19,18 @@
                     <td> <h:message for="lastName"> </h:message> </td>
                 </tr>
                 <tr>
-                    <td> <h:outputLabel for="desiredSalary" value="desiredSalary:"> </h:outputLabel> </td>
+                    <td> <h:outputLabel for="desiredSalary" value="Desired Salary:"> </h:outputLabel> </td>
                     <td> <h:inputText id="desiredSalary" required="true" value="#{candidate.desiredSalary}">
                             <f:validateLongRange minimum="500" maximum="5000" />
                          </h:inputText> </td>
                     <td> <h:message for="desiredSalary"> </h:message> </td>
+                </tr>
+                <tr>
+                    <td> <h:outputLabel for="bornDate" value="Born Date:"> </h:outputLabel> </td>
+                    <td> <h:inputText id="bornDate" required="true" value="#{candidate.bornDate}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:inputText> </td>
+                    <td> <h:message for="bornDate"> </h:message> </td>
                 </tr>
             </table>
             <h:commandButton action="#{vacantfrm.send}" value="Send"></h:commandButton>
