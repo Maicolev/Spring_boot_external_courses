@@ -6,4 +6,16 @@
     <lifecycle>
         <phase-listener>beans.lifecycle.DebuggerListener</phase-listener>
     </lifecycle>
+
+    <application>
+        <locale-config>
+            <default-locale>en</default-locale>
+        </locale-config>
+        <resource-bundle>
+            <base-name>messages</base-name>
+            <var>msgs</var>
+        </resource-bundle>
+        <message-bundle>jsf</message-bundle>
+    </application>
+
 </faces-config>

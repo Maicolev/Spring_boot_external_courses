@@ -6,10 +6,11 @@
 </head>
     <body>
         <h:form>
-            Thanks #{candidate.name} for apply to work
+            <!-- Thanks #{candidate.name} for apply to work -->
+            #{msgs['vacantForm.success']}
             <br></br>
 
-            <h:commandLink action="index"> Back to home </h:commandLink>
+            <h:commandLink action="index"> #{msgs['vacantForm.backToHome']} </h:commandLink>
 
         </h:form>
     </body>

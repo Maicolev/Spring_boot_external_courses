@@ -9,31 +9,32 @@
         <h:form>
             <table>
                 <tr>
-                    <td> <h:outputLabel for="name" value="Name:"> </h:outputLabel> </td>
+                    <td> <h:outputLabel for="name" value="#{msgs['vacantForm.name']}"> </h:outputLabel> </td>
                     <td> <h:inputText id="name" required="true" value="#{candidate.name}"/> </td>
                     <td> <h:message for="name"> </h:message> </td>
                 </tr>
                 <tr>
-                    <td> <h:outputLabel for="lastName" value="lastName:"> </h:outputLabel> </td>
+                    <td> <h:outputLabel for="lastName" value="#{msgs['vacantForm.lastName']}"> </h:outputLabel> </td>
                     <td> <h:inputText id="lastName" required="true" value="#{candidate.lastName}"/> </td>
                     <td> <h:message for="lastName"> </h:message> </td>
                 </tr>
                 <tr>
-                    <td> <h:outputLabel for="desiredSalary" value="Desired Salary:"> </h:outputLabel> </td>
+                    <td> <h:outputLabel for="desiredSalary" value="#{msgs['vacantForm.desiredSalary']}"> </h:outputLabel> </td>
                     <td> <h:inputText id="desiredSalary" required="true" value="#{candidate.desiredSalary}">
                             <f:validateLongRange minimum="500" maximum="5000" />
                          </h:inputText> </td>
                     <td> <h:message for="desiredSalary"> </h:message> </td>
                 </tr>
                 <tr>
-                    <td> <h:outputLabel for="bornDate" value="Born Date:"> </h:outputLabel> </td>
+                    <td> <h:outputLabel for="bornDate" value="#{msgs['vacantForm.bornDate']}"> </h:outputLabel> </td>
                     <td> <h:inputText id="bornDate" required="true" value="#{candidate.bornDate}">
                         <f:convertDateTime pattern="dd/MM/yyyy"/>
                     </h:inputText> </td>
                     <td> <h:message for="bornDate"> </h:message> </td>
                 </tr>
             </table>
-            <h:commandButton action="#{vacantfrm.send}" value="Send"></h:commandButton>
+            <h:commandButton action="#{vacantfrm.send}" value="#{msgs['vacantForm.submit']}"></h:commandButton>
+            <h:commandLink action="#{vacantfrm.changeLanguage}"> #{msgs['vacantForm.language']} </h:commandLink>
         </h:form>
     </body>
 </html>
