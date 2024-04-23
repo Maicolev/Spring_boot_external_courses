@@ -9,6 +9,17 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.Servlet;
+
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+import org.dom4j.io.XMLWriter;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 @Named
 @RequestScoped
@@ -46,4 +57,30 @@ public class Vacantfrm {
         }
     }
 
+    public String changeLanguage(){
+        try {
+            // Ruta al archivo faces-config.xml
+            String rutaArchivo = "/WEB-INF/faces-config.xml";
+
+
+            // Crear un lector XML
+            SAXReader reader = new SAXReader();
+            Document document = reader.read(new File(rutaArchivo));
+
+            // Obtener el elemento <default-locale> y establecer el nuevo valor
+            Element defaultLocaleElement = document.getRootElement()
+                    .element("locale-config")
+                    .element("default-locale");
+            defaultLocaleElement.setText("es");
+
+            // Escribir los cambios de vuelta al archivo
+            XMLWriter writer = new XMLWriter(new FileWriter(rutaArchivo));
+            writer.write(document);
+            writer.close();
+        } catch (DocumentException | IOException e) {
+            e.printStackTrace();
+            // Manejo de errores
+        }
+        return "index";
+    }
 }
