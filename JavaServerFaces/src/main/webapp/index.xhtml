@@ -6,7 +6,7 @@
     <title>Hi world JSF</title>
 </head>
     <body>
-        <h:form>
+        <h:form id="vacantForm" >
             <table>
                 <tr>
                     <td> <h:outputLabel for="name" value="#{msgs['vacantForm.name']}"> </h:outputLabel> </td>
@@ -29,9 +29,26 @@
                     <td> <h:outputLabel for="bornDate" value="#{msgs['vacantForm.bornDate']}"> </h:outputLabel> </td>
                     <td> <h:inputText id="bornDate" required="true" value="#{candidate.bornDate}">
                         <f:convertDateTime pattern="dd/MM/yyyy"/>
-                    </h:inputText> </td>
+                         </h:inputText> </td>
                     <td> <h:message for="bornDate"> </h:message> </td>
                 </tr>
+                <tr>
+                    <td> <h:outputLabel for="postalCode" value="#{msgs['vacantForm.postalCode']}"> </h:outputLabel> </td>
+                    <td> <h:inputText id="postalCode" immediate="true" onchange="this.form.submit()" required="true" value="#{candidate.postalCode}"
+                            valueChangeListener="#{vacantfrm.postalCodeListener}"> </h:inputText> </td>
+                    <td> <h:message for="postalCode"> </h:message> </td>
+                </tr>
+                <tr>
+                    <td> <h:outputLabel for="neighborhood" value="#{msgs['vacantForm.neighborhood']}"> </h:outputLabel> </td>
+                    <td> <h:inputText id="neighborhood" required="true" value="#{candidate.neighborhood}"></h:inputText> </td>
+                    <td> <h:message for="neighborhood"> </h:message> </td>
+                </tr>
+                <tr>
+                    <td> <h:outputLabel for="city" value="#{msgs['vacantForm.city']}"> </h:outputLabel> </td>
+                    <td> <h:inputText id="city" required="true" value="#{candidate.city}"></h:inputText> </td>
+                    <td> <h:message for="city"> </h:message> </td>
+                </tr>
+
             </table>
             <h:commandButton action="#{vacantfrm.send}" value="#{msgs['vacantForm.submit']}"></h:commandButton>
             <h:commandLink action="#{vacantfrm.changeLanguage}"> #{msgs['vacantForm.language']} </h:commandLink>

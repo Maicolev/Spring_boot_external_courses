@@ -6,10 +6,12 @@ import org.apache.logging.log4j.Logger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.component.UIInput;
+import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.Servlet;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -83,4 +85,25 @@ public class Vacantfrm {
         }
         return "index";
     }
+
+    public void postalCodeListener (ValueChangeEvent valueChangeEvent){
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        UIViewRoot uiviewRoot = facesContext.getViewRoot();
+        int newPostalCode = (int) valueChangeEvent.getNewValue();
+
+        if (66 == (newPostalCode)){
+            UIInput neighborhoodInputText = (UIInput) uiviewRoot.findComponent("vacantForm:neighborhood");
+            String newNeighborhood = "Cansas city";
+            neighborhoodInputText.setValue(newNeighborhood);
+            neighborhoodInputText.setSubmittedValue(newNeighborhood);
+
+            UIInput cityInputText = (UIInput) uiviewRoot.findComponent("vacantForm:city");
+            String newCity = "San Francisco";
+            cityInputText.setValue(newCity);
+            cityInputText.setSubmittedValue(newCity);
+
+            facesContext.renderResponse();
+        }
+    }
+
 }
