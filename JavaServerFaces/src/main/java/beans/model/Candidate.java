@@ -18,6 +18,7 @@ public class Candidate {
     private int postalCode;
     private String neighborhood;
     private String city;
+    private String commentary;
 
     Logger log = LogManager.getRootLogger();
 
@@ -84,5 +85,13 @@ public class Candidate {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getCommentary() {
+        return commentary;
+    }
+
+    public void setCommentary(String commentary) {
+        this.commentary = commentary;
     }
 }

@@ -9,6 +9,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.component.UIInput;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -29,6 +30,8 @@ public class Vacantfrm {
 
     @Inject
     private Candidate candidate;
+
+    private boolean commentSent;
 
     Logger log = LogManager.getRootLogger();
 
@@ -104,6 +107,18 @@ public class Vacantfrm {
 
             facesContext.renderResponse();
         }
+    }
+
+    public boolean isCommentSent() {
+        return commentSent;
+    }
+
+    public void setCommentSent(boolean commentSent) {
+        this.commentSent = commentSent;
+    }
+
+    public void modifyStatusCommentary(ActionEvent actionEvent){
+        this.commentSent = !this.commentSent;
     }
 
 }

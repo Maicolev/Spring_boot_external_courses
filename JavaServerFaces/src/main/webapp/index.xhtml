@@ -50,8 +50,32 @@
                 </tr>
 
             </table>
+
+            <table>
+                <tr>
+                    <td>
+                        <h:commandLink actionListener="#{vacantfrm.modifyStatusCommentary}" immediate="true"
+                                       rendered="#{!vacantfrm.commentSent}" value="#{msgs['vacantForm.commentary.show']} "/>
+                        <h:commandLink actionListener="#{vacantfrm.modifyStatusCommentary}" immediate="true"
+                                       rendered="#{vacantfrm.commentSent}" value="#{msgs['vacantForm.commentary.hide']} "/>
+                    </td>
+                </tr>
+            </table>
+
+            <h:panelGroup rendered="#{vacantfrm.commentSent}">
+                <table>
+                    <tr>
+                        <td> <h:outputLabel for="commentary" value="#{msgs['vacantForm.commentary.commentary']}" /> </td>
+                    </tr>
+                    <tr>
+                        <td><h:inputTextarea id="commentary" cols="50" rows="10" value="#{candidate.commentary}" /> </td>
+                    </tr>
+                </table>
+            </h:panelGroup>
+
             <h:commandButton action="#{vacantfrm.send}" value="#{msgs['vacantForm.submit']}"></h:commandButton>
             <h:commandLink action="#{vacantfrm.changeLanguage}"> #{msgs['vacantForm.language']} </h:commandLink>
+
         </h:form>
     </body>
 </html>
