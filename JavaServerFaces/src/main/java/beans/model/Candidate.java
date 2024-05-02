@@ -13,10 +13,11 @@ public class Candidate {
 
     private String name;
     private String lastName;
+    private String gender;
     private int desiredSalary;
     private Date bornDate;
     private int postalCode;
-    private String neighborhood;
+    private int neighborhoodId;
     private String city;
     private String commentary;
 
@@ -30,13 +31,25 @@ public class Candidate {
         this.desiredSalary = desiredSalary;
     }
 
-    public String getName(){
-        return name;
+    public Candidate(String name, String lastName, String gender, int desiredSalary, Date bornDate, int postalCode, int neighborhoodId, String city, String commentary) {
+        this.name = name;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.desiredSalary = desiredSalary;
+        this.bornDate = bornDate;
+        this.postalCode = postalCode;
+        this.neighborhoodId = neighborhoodId;
+        this.city = city;
+        this.commentary = commentary;
     }
 
     public void setName(String name){
         this.name = name;
         log.info("setting name property " + this.name);
+    }
+
+    public String getName(){
+        return name;
     }
 
     public String getLastName() {
@@ -71,12 +84,12 @@ public class Candidate {
         this.postalCode = postalCode;
     }
 
-    public String getNeighborhood() {
-        return neighborhood;
+    public int getNeighborhoodId() {
+        return neighborhoodId;
     }
 
-    public void setNeighborhood(String neighborhood) {
-        this.neighborhood = neighborhood;
+    public void setNeighborhoodId(int neighborhoodId) {
+        this.neighborhoodId = neighborhoodId;
     }
 
     public String getCity() {
@@ -94,4 +107,8 @@ public class Candidate {
     public void setCommentary(String commentary) {
         this.commentary = commentary;
     }
+
+    public String getGender() { return gender; }
+
+    public void setGender(String gender) { this.gender = gender; }
 }

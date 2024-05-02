@@ -19,6 +19,17 @@
                     <td> <h:message for="lastName"> </h:message> </td>
                 </tr>
                 <tr>
+                    <td> <h:outputLabel for="gender" value="#{msgs['vacantForm.gender']}"> </h:outputLabel> </td>
+                    <td>
+                        <h:selectOneMenu id="gender" required="true" value="#{candidate.gender}">
+                            <f:selectItem itemLabel="#{msgs['vacantForm.select']}" itemValue=""/>
+                            <f:selectItem itemLabel="M" itemValue="M"/>
+                            <f:selectItem itemLabel="F" itemValue="F"/>
+                        </h:selectOneMenu>
+                    </td>
+                    <td> <h:message for="gender"> </h:message> </td>
+                </tr>
+                <tr>
                     <td> <h:outputLabel for="desiredSalary" value="#{msgs['vacantForm.desiredSalary']}"> </h:outputLabel> </td>
                     <td> <h:inputText id="desiredSalary" required="true" value="#{candidate.desiredSalary}">
                             <f:validateLongRange minimum="500" maximum="5000" />
@@ -39,9 +50,15 @@
                     <td> <h:message for="postalCode"> </h:message> </td>
                 </tr>
                 <tr>
-                    <td> <h:outputLabel for="neighborhood" value="#{msgs['vacantForm.neighborhood']}"> </h:outputLabel> </td>
-                    <td> <h:inputText id="neighborhood" required="true" value="#{candidate.neighborhood}"></h:inputText> </td>
-                    <td> <h:message for="neighborhood"> </h:message> </td>
+                    <td> <h:outputLabel for="neighborhoodId" value="#{msgs['vacantForm.neighborhood']}"> </h:outputLabel> </td>
+
+                    <td>
+                        <h:selectOneMenu id="neighborhoodId" required="true" value="#{candidate.neighborhoodId}" >
+                            <f:selectItem itemLabel="#{msgs['vacantForm.select']}" itemValue=""/>
+                            <f:selectItems value="#{neighborhoodService.selectItems}"/>
+                        </h:selectOneMenu>
+                    </td>
+                    <td> <h:message for="neighborhoodId"> </h:message> </td>
                 </tr>
                 <tr>
                     <td> <h:outputLabel for="city" value="#{msgs['vacantForm.city']}"> </h:outputLabel> </td>

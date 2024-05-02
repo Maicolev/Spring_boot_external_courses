@@ -1,6 +1,7 @@
 package beans.backing;
 
 import beans.model.Candidate;
+import beans.services.NeighborhoodService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -32,6 +33,9 @@ public class Vacantfrm {
     private Candidate candidate;
 
     private boolean commentSent;
+
+    @Inject
+    private NeighborhoodService neighborhoodService;
 
     Logger log = LogManager.getRootLogger();
 
@@ -94,19 +98,19 @@ public class Vacantfrm {
         UIViewRoot uiviewRoot = facesContext.getViewRoot();
         int newPostalCode = (int) valueChangeEvent.getNewValue();
 
-        if (66 == (newPostalCode)){
-            UIInput neighborhoodInputText = (UIInput) uiviewRoot.findComponent("vacantForm:neighborhood");
-            String newNeighborhood = "Cansas city";
-            neighborhoodInputText.setValue(newNeighborhood);
-            neighborhoodInputText.setSubmittedValue(newNeighborhood);
+        //if (66 == (newPostalCode)){
+        UIInput neighborhoodInputText = (UIInput) uiviewRoot.findComponent("vacantForm:neighborhoodId");
+        int newNeighborhoodId = this.neighborhoodService.getNeighborhoodIdByPC(newPostalCode);
+        neighborhoodInputText.setValue(newNeighborhoodId);
+        neighborhoodInputText.setSubmittedValue(newNeighborhoodId);
 
-            UIInput cityInputText = (UIInput) uiviewRoot.findComponent("vacantForm:city");
-            String newCity = "San Francisco";
-            cityInputText.setValue(newCity);
-            cityInputText.setSubmittedValue(newCity);
+        UIInput cityInputText = (UIInput) uiviewRoot.findComponent("vacantForm:city");
+        String newCity = "San Francisco";
+        cityInputText.setValue(newCity);
+        cityInputText.setSubmittedValue(newCity);
 
-            facesContext.renderResponse();
-        }
+        facesContext.renderResponse();
+        //}
     }
 
     public boolean isCommentSent() {
@@ -121,4 +125,15 @@ public class Vacantfrm {
         this.commentSent = !this.commentSent;
     }
 
+    public Candidate getCandidate() {
+        return candidate;
+    }
+
+    public NeighborhoodService getNeighborhoodService() {
+        return neighborhoodService;
+    }
+
+    public void setNeighborhoodService(NeighborhoodService neighborhoodService) {
+        this.neighborhoodService = neighborhoodService;
+    }
 }
