@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <title>Java Server Faces title</title>
+    <h:outputStylesheet library="css" name="styles.css"/>
+</h:head>
+<h:body>
+    <div id="wrapper">
+        <div id="header-wrapper">
+            <ui:insert name="top">
+                <div id="header">
+                    <div id="logo">
+                        <h1>Java Server Faces body</h1>
+                    </div>
+                </div>
+            </ui:insert>
+        </div>
+
+        <div id="page">
+            <ui:insert name="content">Content</ui:insert>
+        </div>
+
+        <div id="footer">
+            <ui:insert name="botoom">Maicol O.</ui:insert>
+        </div>
+    </div>
+
+</h:body>
+</html>
