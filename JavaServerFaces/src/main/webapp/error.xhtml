@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title>Success</title>
+</h:head>
+<h:body>
+    <ui:composition template="./WEB-INF/templates/mainTemplate.xhtml">
+        <ui:define name="content">
+            <h:form>
+                <!-- Sorry #{candidate.name} don't have vacants for the moment -->
+                #{msgs['vacantForm.error']}
+                <br></br>
+
+                <h:commandLink action="index"> #{msgs['vacantForm.backToHome']} </h:commandLink>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>
