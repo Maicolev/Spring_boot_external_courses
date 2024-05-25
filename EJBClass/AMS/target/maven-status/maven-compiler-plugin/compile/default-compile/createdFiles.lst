@@ -1,0 +1,4 @@
+domain\Person.class
+PersonServiceImpl.class
+client\ClientPersonService.class
+services\interfaces\PersonServicesRemote.class
