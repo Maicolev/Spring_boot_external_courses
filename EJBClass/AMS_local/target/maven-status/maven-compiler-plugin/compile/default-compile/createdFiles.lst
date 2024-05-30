@@ -1,0 +1,4 @@
+services\PersonServiceImpl.class
+domain\Person.class
+services\PersonServicesLocal.class
+web\PersonServlet.class
