@@ -6,13 +6,13 @@
 
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" >
-        <title> People list </title>
+        <title> App list </title>
     </head>
     <body>
         <h1>People list</h1>
         <ul>
             <c:forEach items="${people}" var="person">
-                <li> ${person.firstName} ${person.lastName} ${person.age} ${person.phone} ${person.email}</li>
+                <li> ${person.firstname} ${person.lastname} ${person.age} ${person.phone} ${person.email}</li>
             </c:forEach>
         </ul>
     </body>

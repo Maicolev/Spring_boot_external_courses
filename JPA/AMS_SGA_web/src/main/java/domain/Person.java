@@ -1,73 +1,83 @@
 package domain;
 
 import jakarta.persistence.*;
-import java.io.Serializable;
+import jakarta.validation.constraints.Size;
+
+import java.util.List;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "Person.findAll", query = "select p from Person p order by p.idPerson")
+        @NamedQuery(name = "Person.findAll", query = "select p from Person p order by p.id")
 })
-@Table(name = "Person")
-public class Person implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+@Table(name = "PERSON")
+public class Person {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //@Column (name="id_person")
-    private int idPerson;
+    @Column(name = "PERSON_ID", nullable = false)
+    private Long id;
 
-    private String firstName;
+    @Column(name = "AGE")
+    private Long age;
 
-    private String lastName;
+    @Size(max = 255)
+    @Column(name = "FIRSTNAME")
+    private String firstname;
 
-    private int age;
+    @Size(max = 255)
+    @Column(name = "LASTNAME")
+    private String lastname;
 
+    @Size(max = 255)
+    @Column(name = "PHONE")
     private String phone;
 
+    @Size(max = 50)
+    @Column(name = "EMAIL", length = 50)
     private String email;
 
-    public Person() {}
+    @OneToMany(mappedBy = "person")
+    private List<User> users;
 
-    public Person(int idPerson, String firstName, String lastName, int age, String phone, String email) {
-        this.idPerson = idPerson;
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Person(){}
+
+    public Person(Long id, Long age, String firstname, String lastname, String phone, String email) {
+        this.id = id;
         this.age = age;
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.phone = phone;
         this.email = email;
     }
 
-    public int getIdPerson() {
-        return idPerson;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdPerson(int idPerson) {
-        this.idPerson = idPerson;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public int getAge() {
+    public Long getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Long age) {
         this.age = age;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getPhone() {
@@ -89,10 +99,10 @@ public class Person implements Serializable {
     @Override
     public String toString() {
         return "Person{" +
-                "idPerson=" + idPerson +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                "id=" + id +
                 ", age=" + age +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 '}';

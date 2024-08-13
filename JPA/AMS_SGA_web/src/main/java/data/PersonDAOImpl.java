@@ -18,7 +18,7 @@ public class PersonDAOImpl implements PersonDAO {
 
     @Override
     public Person findById(Person person) {
-        return em.find(Person.class, person.getIdPerson());
+        return em.find(Person.class, person.getId());
     }
 
     @Override
