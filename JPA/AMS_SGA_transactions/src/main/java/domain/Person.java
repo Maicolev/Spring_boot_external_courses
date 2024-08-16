@@ -38,7 +38,7 @@ public class Person {
     @Column(name = "EMAIL", length = 50)
     private String email;
 
-    @OneToMany(mappedBy = "person")
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
     private List<User> users;
 
     public Person(){}
@@ -98,6 +98,14 @@ public class Person {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     @Override

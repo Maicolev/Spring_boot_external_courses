@@ -1,7 +1,10 @@
 package test;
 
 import domain.Person;
+import domain.User;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 public class testMain {
     public static void main(String[] args) {
@@ -13,9 +16,10 @@ public class testMain {
 
        //Person person = findPerson(em, et, 7);
        //Person person = createPerson(em, et, 7);
-       //Person person = removePerson(em, et, 7);
-        Person person = updatePerson(em, et, 7);
-
+       //Person person = removePerson(em, et, 89);
+       //Person person = updatePerson(em, et, 7);
+       //lazyAndEagerAnotations(em);
+        Person person = CascadePersist(em, et, 89);
         em.close();
 
        System.out.println(person.getFirstname() + " " + person.getLastname());
@@ -24,7 +28,7 @@ public class testMain {
 
     static Person findPerson(EntityManager em, EntityTransaction et, int id){
         et.begin();
-        Person person = em.find(Person.class, Long.parseLong("7"));
+        Person person = em.find(Person.class, Long.parseLong(String.valueOf(id)));
         et.commit();
         return person;
     }
@@ -56,4 +60,29 @@ public class testMain {
         et2.commit();
         return person;
     }
+
+    static void lazyAndEagerAnotations(EntityManager em){
+        List<Person> people = em.createNamedQuery("Person.findAll").getResultList();
+        for (Person person : people) {
+            System.out.println(person.getFirstname() + " " + person.getLastname());
+            for (User user : person.getUsers()){
+                System.out.println(user.getUsername());
+            }
+        }
+    }
+
+    static Person CascadePersist (EntityManager em, EntityTransaction et, int id){
+
+        et.begin();
+        Person person = new Person(Long.parseLong(String.valueOf(id)), Long.parseLong("67"), "Martha", "Zul", "77777", "email2@email.com" );
+        User user = new User(Long.parseLong("78"), person,"userMartha", "1234");
+
+        em.persist(user);
+        et.commit();
+
+        return person;
+    }
+
+
+
 }

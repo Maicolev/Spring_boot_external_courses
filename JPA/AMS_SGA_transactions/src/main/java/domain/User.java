@@ -15,9 +15,8 @@ public class User {
     @Column(name = "USER_ID", nullable = false)
     private Long id;
 
-    @MapsId
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "USER_ID", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "PERSON_ID", referencedColumnName = "PERSON_ID", nullable = false)
     private Person person;
 
     @Size(max = 50)
@@ -31,6 +30,12 @@ public class User {
     public User(Long id, Person person, String username, String password) {
         this.id = id;
         this.person = person;
+        this.username = username;
+        this.password = password;
+    }
+
+    public User(Long id, String username, String password) {
+        this.id = id;
         this.username = username;
         this.password = password;
     }
