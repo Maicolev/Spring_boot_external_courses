@@ -43,6 +43,10 @@ public class Person {
 
     public Person(){}
 
+    public Person(Long id){
+    this.id=id;
+    }
+
     public Person(Long id, Long age, String firstname, String lastname, String phone, String email) {
         this.id = id;
         this.age = age;
