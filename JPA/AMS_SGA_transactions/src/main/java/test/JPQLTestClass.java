@@ -9,6 +9,8 @@ import jakarta.persistence.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static commons.Commons.showUsers;
+
 public class JPQLTestClass {
     private static Logger logger = LoggerFactory.getLogger(JPQLTestClass.class);
 
@@ -146,19 +148,6 @@ public class JPQLTestClass {
         logger.info("16.left join use with eager loading");
         jpql = "select u from User u left join fetch u.person";
         users = em.createQuery(jpql).getResultList();
-        showUsers(users);
-    }
-
-
-    private static void showPeople(List<Person> people) {
-        for(Person p: people){
-            logger.info("People: " + p);
-        }
-    }
-
-    private static void showUsers(List<User> users) {
-        for(User u: users){
-            logger.info("Usuario: " + u);
-        }
+        showUsers(users, logger);
     }
 }
