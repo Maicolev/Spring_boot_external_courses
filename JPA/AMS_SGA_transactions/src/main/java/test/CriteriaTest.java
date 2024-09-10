@@ -70,7 +70,7 @@ public class CriteriaTest {
         //Check if we have criteria to add
         Integer parameter = 66;
         ParameterExpression <Integer> parameterExpression = criteriaBuilder.parameter(Integer.class, "id");
-        criteria.add(criteriaBuilder.equal(personRoot.get("id"), parameter));
+        criteria.add(criteriaBuilder.equal(personRoot.get("id"), parameterExpression));
 
         // Criteria is added
         if(criteria.isEmpty()){
