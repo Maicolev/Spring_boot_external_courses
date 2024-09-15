@@ -2,6 +2,8 @@ package domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
 import java.util.List;
 
@@ -10,6 +12,8 @@ import java.util.List;
         @NamedQuery(name = "Person.findAll", query = "select p from Person p order by p.id")
 })
 @Table(name = "PERSON")
+@XmlAccessorType
+@XmlRootElement
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_seq")

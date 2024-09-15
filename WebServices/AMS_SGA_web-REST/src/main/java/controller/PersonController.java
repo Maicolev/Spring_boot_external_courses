@@ -20,6 +20,7 @@ public class PersonController {
     @GET
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Person> getPeople() {
+        System.out.println("Entro" );
         return personService.getAllPersons();
     }
 
@@ -27,6 +28,7 @@ public class PersonController {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     @Path("{id}")
     public Person getPerson(@PathParam("id") int id) {
+        System.out.println("Entro" );
         return personService.getPersonById(new Person((long) id));
     }
 
@@ -34,6 +36,7 @@ public class PersonController {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Response addPerson(Person person) {
+        System.out.println("Entro" );
         try {
             personService.addPerson(person);
             return Response.ok().entity(person).build();
@@ -48,6 +51,7 @@ public class PersonController {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     @Path("{id}")
     public Response updatePerson(@PathParam("id") int id, Person personModified) {
+        System.out.println("Entro" + id + " " + personModified.getLastname());
         try {
             Person persona = personService.getPersonById(new Person((long) id));
             if (persona != null) {

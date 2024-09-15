@@ -33,11 +33,18 @@
                 <h:outputText value="#{person.id}" />
             </p:column>
 
-            <p:column headerText="Id">
-                <h:outputText value="#{person.id}" />
+            <p:column headerText="Age">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{person.age}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{person.age}" />
+                    </f:facet>
+                </p:cellEditor>
             </p:column>
 
-            <p:column headerText="firstname">
+            <p:column headerText="First Name">
                 <p:cellEditor>
                     <f:facet name="output">
                         <h:outputText value="#{person.firstname}" />
@@ -48,7 +55,7 @@
                 </p:cellEditor>
             </p:column>
 
-            <p:column headerText="lastname">
+            <p:column headerText="Last Name">
                 <p:cellEditor>
                     <f:facet name="output">
                         <h:outputText value="#{person.lastname}" />
@@ -70,7 +77,7 @@
                 </p:cellEditor>
             </p:column>
 
-            <p:column headerText="phone">
+            <p:column headerText="Phone">
                 <p:cellEditor>
                     <f:facet name="output">
                         <h:outputText value="#{person.phone}" />
