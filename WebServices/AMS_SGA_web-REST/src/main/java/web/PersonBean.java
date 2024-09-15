@@ -73,5 +73,27 @@ public class PersonBean {
         this.personSelected = new Person();
     }
 
+    /** recharged methods **/
+    public Person getPersonById(Person person){
+        logger.info("getPersonById() - logger");
+        return personService.getPersonById(person);
+    }
+    public void updatePerson (Person person){
+        logger.info("updatePerson() - logger");
+        personService.updatePerson(person);
+        people.remove(getPersonById(person));
+        people.add(person);
+    }
 
+    public void removePerson(Person person){
+        logger.info("removePerson(person) - logger");
+        this.personService.deletePerson(person);
+        this.people.remove(person);
+    }
+
+    public void addPerson(Person person){
+        logger.info("addPerson() - logger");
+        this.personService.addPerson(person);
+        this.people.add(person);
+    }
 }

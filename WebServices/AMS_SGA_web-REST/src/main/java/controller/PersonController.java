@@ -36,7 +36,7 @@ public class PersonController {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Response addPerson(Person person) {
-        System.out.println("Entro" );
+        System.out.println("Entro post: " + person.getId() + " " + person.getLastname() );
         try {
             personService.addPerson(person);
             return Response.ok().entity(person).build();

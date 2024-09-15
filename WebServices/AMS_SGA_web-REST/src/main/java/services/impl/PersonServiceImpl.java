@@ -26,6 +26,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public void addPerson(Person person) {
+        System.out.println("Entro post: " + person.getId() + " " + person.getLastname() );
          personDao.save(person);
     }
 
