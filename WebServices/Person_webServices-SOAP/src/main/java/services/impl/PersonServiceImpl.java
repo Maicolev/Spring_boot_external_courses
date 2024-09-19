@@ -10,8 +10,13 @@ import java.util.List;
 import jakarta.inject.Inject;
 import services.interfaces.PersonServiceWs;
 
+import jakarta.annotation.security.DeclareRoles;
+import jakarta.annotation.security.RolesAllowed;
+
 @Stateless
 @WebService (endpointInterface = "services.interfaces.PersonServiceWs")
+@DeclareRoles({"ROLE_ADMIN","ROLE_USER"})
+@RolesAllowed({"ROLE_ADMIN","ROLE_USER"})
 public class PersonServiceImpl implements PersonService, PersonServiceWs {
 
     @Inject
@@ -38,6 +43,7 @@ public class PersonServiceImpl implements PersonService, PersonServiceWs {
     }
 
     @Override
+    @RolesAllowed("ROLE_ADMIN")
     public void deletePerson(Person person) {
        personDao.delete(person);
     }
