@@ -15,7 +15,7 @@ public class ClientPersonService implements Serializable {
 
         try{
             Context jndi = new InitialContext();
-            PersonServicesRemote personServicesRemote = (PersonServicesRemote) jndi.lookup("java:global/AMS/PersonServiceImpl!services.interfaces.PersonServicesRemote");
+            PersonServicesRemote personServicesRemote = (PersonServicesRemote) jndi.lookup("java:global/AMS_SGA_web-REST-1.0/PersonServiceImpl!services.interfaces.PersonService");
 
             List <Person> people = personServicesRemote.getAllPersons();
 
