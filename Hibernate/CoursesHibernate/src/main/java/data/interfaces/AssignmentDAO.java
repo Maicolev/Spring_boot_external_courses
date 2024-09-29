@@ -9,8 +9,6 @@ public interface AssignmentDAO {
 
     public Assignment findById(Assignment Assignment);
 
-    Assignment findAssignmentByEmail(Assignment Assignment);
-
     public void save(Assignment Assignment);
 
     public void delete(Assignment Assignment);

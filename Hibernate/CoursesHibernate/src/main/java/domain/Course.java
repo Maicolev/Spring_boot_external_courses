@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
+@NamedQuery(name = "Course.findAll", query = "SELECT a FROM Course a")
 public class Course implements Serializable {
 
     @Id

@@ -3,7 +3,7 @@ package data.impl;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
-public class GenericDAO {
+public abstract class GenericDAO {
     @PersistenceContext(unitName = "CoursesPersistence")
-    EntityManager em;
+    protected EntityManager em;
 }

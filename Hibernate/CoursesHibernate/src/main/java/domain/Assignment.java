@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@NamedQuery(name = "Assignment.findAll", query = "SELECT a FROM Assignment a")
 public class Assignment implements Serializable {
 
     @Id
