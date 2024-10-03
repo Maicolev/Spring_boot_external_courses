@@ -9,11 +9,11 @@ import java.util.List;
 public interface AddressService {
     public List<Address> findAll();
 
-    public Address findById(Address Address);
+    public Address findById(Address address);
 
-    public void save(Address Address);
+    public void save(Address address);
 
-    public void delete(Address Address);
+    public void delete(Address address);
 
-    public void update(Address Address);
+    public void update(Address address);
 }

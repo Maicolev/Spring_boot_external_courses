@@ -14,22 +14,22 @@ public class AddressDAOImpl extends GenericDAO implements AddressDAO {
     }
 
     @Override
-    public Address findById(Address Address) {
-        return em.find(Address.getClass(), Address.getId());
+    public Address findById(Address address) {
+        return em.find(address.getClass(), address.getId());
     }
 
     @Override
-    public void save(Address Address) {
-        em.persist(Address);
+    public void save(Address address) {
+        em.persist(address);
     }
 
     @Override
-    public void delete(Address Address) {
-        em.remove(Address);
+    public void delete(Address address) {
+        em.remove(address);
     }
 
     @Override
-    public void update(Address Address) {
-        em.merge(Address);
+    public void update(Address address) {
+        em.merge(address);
     }
 }

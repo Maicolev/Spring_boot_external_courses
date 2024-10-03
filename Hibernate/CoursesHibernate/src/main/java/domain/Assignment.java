@@ -12,7 +12,7 @@ public class Assignment implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "assignment_seq")
     @SequenceGenerator(name = "assignment_seq", sequenceName = "assignment_seq", allocationSize = 1)
     @Column(name = "id_assignment", nullable = false)
-    private Long idAssignment;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name="id_student",referencedColumnName = "id_student")
@@ -24,5 +24,31 @@ public class Assignment implements Serializable {
 
     private String turn;
 
+    public Long getId() {
+        return id;
+    }
 
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public String getTurn() {
+        return turn;
+    }
+
+    public void setTurn(String turn) {
+        this.turn = turn;
+    }
 }

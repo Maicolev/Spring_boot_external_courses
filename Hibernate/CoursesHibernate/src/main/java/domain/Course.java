@@ -13,7 +13,7 @@ public class Course implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_seq")
     @SequenceGenerator(name = "course_seq", sequenceName = "course_seq", allocationSize = 1)
     @Column(name = "id_course", nullable = false)
-    private Long idCourse;
+    private Long id;
 
     @Column(name = "course_name")
     private String courseName;
@@ -26,11 +26,11 @@ public class Course implements Serializable {
     public Course() {}
 
     public Course(Long idCourse) {
-        this.idCourse = idCourse;
+        this.id = idCourse;
     }
 
-    public Long getIdCourse() {
-        return idCourse;
+    public Long getId() {
+        return id;
     }
 
     public String getCourseName() {

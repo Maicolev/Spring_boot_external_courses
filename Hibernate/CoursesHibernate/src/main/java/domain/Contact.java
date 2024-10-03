@@ -12,7 +12,7 @@ public class Contact implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "contact_seq")
     @SequenceGenerator(name = "contact_seq", sequenceName = "contact_seq", allocationSize = 1)
     @Column(name = "id_contact", nullable = false)
-    private Long idContact;
+    private Long id;
 
     private String phone;
 
@@ -26,7 +26,7 @@ public class Contact implements Serializable {
     }
 
     public Long getId() {
-        return idContact;
+        return id;
     }
 
     public String getPhone() {

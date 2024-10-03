@@ -13,7 +13,7 @@ public class Student implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_seq")
     @SequenceGenerator(name = "student_seq", sequenceName = "student_seq", allocationSize = 1)
     @Column(name = "id_student", nullable = false)
-    private Long idStudent;
+    private Long id;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_address", referencedColumnName = "id_address")
@@ -37,7 +37,7 @@ public class Student implements Serializable {
         this.address = idAddress;
     }
     public Long getId() {
-        return idStudent;
+        return id;
     }
 
     public Address getIdAddress() {

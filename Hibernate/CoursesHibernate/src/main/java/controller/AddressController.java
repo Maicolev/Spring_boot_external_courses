@@ -17,7 +17,7 @@ public class AddressController {
     private AddressService addressService;
 
     @GET
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public List<Address> getAddresses() {
         return addressService.findAll();
     }
