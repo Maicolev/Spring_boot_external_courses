@@ -40,19 +40,19 @@ public class Student implements Serializable {
         return id;
     }
 
-    public Address getIdAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setIdAddress(Address idAddress) {
+    public void setAddress(Address idAddress) {
         this.address = idAddress;
     }
 
-    public Contact getIdContact() {
+    public Contact getContact() {
         return contact;
     }
 
-    public void setIdContact(Contact idContact) {
+    public void setContact(Contact idContact) {
         this.contact = idContact;
     }
 

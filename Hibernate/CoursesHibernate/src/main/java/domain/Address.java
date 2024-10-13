@@ -12,7 +12,7 @@ public class Address implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "address_seq")
     @SequenceGenerator(name = "address_seq", sequenceName = "address_seq", allocationSize = 1)
     @Column(name = "id_address", nullable = false)
-    private Long idAddress;
+    private Long id;
 
     private String street;
 
@@ -23,10 +23,10 @@ public class Address implements Serializable {
     public Address () {}
 
     public Address(Long idAddress) {
-        this.idAddress = idAddress;
+        this.id = idAddress;
     }
 
-    public Long getId() {return idAddress;}
+    public Long getId() {return id;}
 
     public String getStreet() {
         return street;
