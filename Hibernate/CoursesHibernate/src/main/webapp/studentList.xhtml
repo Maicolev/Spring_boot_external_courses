@@ -11,6 +11,7 @@
 <h:body>
     <p:ajaxStatus style="width: 16px;height: 16px;" id="ajaxStatusPanel">
         <f:facet name="start">
+            <!-- Puede agregar contenido aquí para mostrar al inicio de la solicitud AJAX -->
         </f:facet>
 
         <f:facet name="complete">
@@ -36,10 +37,12 @@
             <p:column headerText="Address">
                 <p:cellEditor>
                     <f:facet name="output">
-                        <h:outputText value="#{student.address.toString}" />
+                        <h:outputText value="#{student.address.street}, #{student.address.city}, #{student.address.state}" />
                     </f:facet>
                     <f:facet name="input">
-                        <p:inputText value="#{student.address.id}" />
+                        <p:inputText value="#{student.address.street}" />
+                        <p:inputText value="#{student.address.city}" />
+                        <p:inputText value="#{student.address.state}" />
                     </f:facet>
                 </p:cellEditor>
             </p:column>
@@ -47,15 +50,16 @@
             <p:column headerText="Contact">
                 <p:cellEditor>
                     <f:facet name="output">
-                        <h:outputText value="#{student.contact.toString}" />
+                        <h:outputText value="#{student.contact.phone}, #{student.contact.email}" />
                     </f:facet>
                     <f:facet name="input">
-                        <p:inputText value="#{student.contact.id}" />
+                        <p:inputText value="#{student.contact.phone}" />
+                        <p:inputText value="#{student.contact.email}" />
                     </f:facet>
                 </p:cellEditor>
             </p:column>
 
-            <p:column headerText=" Name">
+            <p:column headerText="Name">
                 <p:cellEditor>
                     <f:facet name="output">
                         <h:outputText value="#{student.name}" />
@@ -76,6 +80,8 @@
                     </f:facet>
                 </p:cellEditor>
             </p:column>
+
+
 
             <f:facet name="footer">
                 <p:commandButton value="Go back" action="index" />
@@ -103,18 +109,17 @@
               resizable="false" >
         <h:form id="dialogForm">
             <p:outputPanel id="studentDetail" style="text-align: center">
-                <p:panelGrid id="display" columns="4" columnClasses="label, value" >
-                    <h:outputText value=" Name" />
+                <p:panelGrid id="display" columns="2" columnClasses="label,value">
+                    <h:outputText value="Name" />
                     <h:inputText value="#{studentBean.studentSelected.name}" />
 
                     <h:outputText value="Last name" />
                     <h:inputText value="#{studentBean.studentSelected.lastName}" />
-
-                    <f:facet name="footer" >
-                        <p:commandButton value="Add" actionListener="#{studentBean.addStudent}"
-                                         update="display,:studentsListForm:studentsDataTable" oncomplete="PF('studentDialog').hide();" />
-                    </f:facet>
                 </p:panelGrid>
+                <f:facet name="footer">
+                    <p:commandButton value="Add" actionListener="#{studentBean.addStudent}"
+                                     update="display,:studentsListForm:studentsDataTable" oncomplete="PF('studentDialog').hide();" />
+                </f:facet>
             </p:outputPanel>
         </h:form>
     </p:dialog>

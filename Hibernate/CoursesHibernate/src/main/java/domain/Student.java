@@ -79,4 +79,16 @@ public class Student implements Serializable {
     public void setAssignments(List<Assignment> assignments) {
         this.assignments = assignments;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", address=" + address +
+                ", contact=" + contact +
+                ", name='" + name + '\'' +
+                ", assignments=" + assignments +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 }
