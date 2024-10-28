@@ -81,6 +81,17 @@
                 </p:cellEditor>
             </p:column>
 
+            <p:column headerText="Assignments">
+                <ui:repeat value="#{student.assignments}" var="assignment">
+                    <h:panelGrid columns="2">
+                        <h:outputText value="Course:" />
+                        <h:outputText value="#{assignment.course.courseName}" />
+
+                        <h:outputText value="Turn:" />
+                        <h:outputText value="#{assignment.turn}" />
+                    </h:panelGrid>
+                </ui:repeat>
+            </p:column>
 
 
             <f:facet name="footer">
