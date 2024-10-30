@@ -1,11 +1,12 @@
 package web;
 
+import domain.Address;
+import domain.Contact;
 import domain.Student;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import jakarta.persistence.OneToMany;
 import org.primefaces.event.RowEditEvent;
 import service.interfaces.StudentService;
 
@@ -32,6 +33,8 @@ public class StudentBean {
         logger.info("Edited Student logger" + "start initialize");
         students = studentService.findAll();
         this.studentSelected = new Student();
+        this.studentSelected.setAddress(new Address());
+        this.studentSelected.setContact(new Contact());
     }
 
     public void editListener(RowEditEvent event) {
@@ -41,9 +44,11 @@ public class StudentBean {
         studentService.update(student);
     }
 
-    public Student getStudentSelected () {return studentSelected;}
+    public Student getStudentSelected () {
+        return studentSelected;
+    }
 
-    public void setStudentSelected(Student studentSelected){
+    public void setStudentSelected(Student studentSelected) {
         this.studentSelected = studentSelected;
     }
 
@@ -55,20 +60,39 @@ public class StudentBean {
         this.students = students;
     }
 
-    public void add(){
-        this.studentService.save(studentSelected);
-        this.students.add(studentSelected);
-        this.studentSelected = null;
+    public void add() {
+        logger.info("into add method");
+
+        // Verificar que los objetos Address y Contact estén correctamente inicializados
+        if (studentSelected.getAddress() != null && studentSelected.getContact() != null) {
+            logger.info("street: "     + studentSelected.getAddress().getStreet());
+            logger.info("Id contact: " + studentSelected.getContact().getId());
+            logger.info("email contact: " + studentSelected.getContact().getEmail());
+            logger.info("Id address: " + studentSelected.getAddress().getId());
+
+            // Guarda el estudiante
+            this.studentService.save(studentSelected);
+            this.students.add(studentSelected);
+
+            // Reiniciar para la siguiente adición
+            this.studentSelected = new Student();
+            this.studentSelected.setAddress(new Address());
+            this.studentSelected.setContact(new Contact());
+        } else {
+            logger.error("Address or Contact is not initialized.");
+        }
     }
 
-    public void remove(){
+
+    public void remove() {
         this.studentService.delete(studentSelected);
         this.students.remove(this.studentSelected);
         this.studentSelected = null;
     }
 
-    public void restartStudentSelected(){
+    public void restartStudentSelected() {
         this.studentSelected = new Student();
+        this.studentSelected.setAddress(new Address());
+        this.studentSelected.setContact(new Contact());
     }
-
 }

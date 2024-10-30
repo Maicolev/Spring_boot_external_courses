@@ -24,7 +24,7 @@
         <p:messages/>
 
         <p:dataTable id="studentsDataTable" value="#{studentBean.students}" var="student" editable="true" rowKey="#{student.id}"
-                     selection="#{studentBean.studentSelected}" selectionMode="single" >
+                     selection="#{studentBean.studentSelected}" selectionMode="single" paginator="true" rows="10">
 
             <f:facet name="header">
                 Students list
@@ -93,6 +93,9 @@
                 </ui:repeat>
             </p:column>
 
+            <p:column headerText="Options" style="width: 50px">
+                <p:rowEditor/>
+            </p:column>
 
             <f:facet name="footer">
                 <p:commandButton value="Go back" action="index" />
@@ -101,36 +104,45 @@
                                  update=":dialogForm" oncomplete="PF('studentDialog').show()" />
             </f:facet>
 
-            <p:column headerText="Options" style="width: 50px">
-                <p:rowEditor/>
-            </p:column>
-
             <p:ajax event="rowEdit" listener="#{studentBean.editListener}"/>
-
         </p:dataTable>
 
         <p:contextMenu for="studentsDataTable">
             <p:menuitem value="Remove" update="studentsListForm:studentsDataTable" icon="ui-icon-close"
-                        actionListener="#{studentBean.removeStudent}" />
+                        actionListener="#{studentBean.remove}" />
         </p:contextMenu>
-
     </h:form>
 
     <p:dialog id="studentDlg" widgetVar="studentDialog" header="Add Student" modal="true" showEffect="fade" hideEffect="fade"
-              resizable="false" >
+              resizable="false">
         <h:form id="dialogForm">
             <p:outputPanel id="studentDetail" style="text-align: center">
                 <p:panelGrid id="display" columns="2" columnClasses="label,value">
+                    <h:outputText value="Street" />
+                    <p:inputText value="#{studentBean.studentSelected.address.street}" />
+
+                    <h:outputText value="City" />
+                    <p:inputText value="#{studentBean.studentSelected.address.city}" />
+
+                    <h:outputText value="State" />
+                    <p:inputText value="#{studentBean.studentSelected.address.state}" />
+
+                    <h:outputText value="Phone" />
+                    <p:inputText value="#{studentBean.studentSelected.contact.phone}" />
+
+                    <h:outputText value="Email" />
+                    <p:inputText value="#{studentBean.studentSelected.contact.email}" />
+
                     <h:outputText value="Name" />
-                    <h:inputText value="#{studentBean.studentSelected.name}" />
+                    <p:inputText value="#{studentBean.studentSelected.name}" />
 
                     <h:outputText value="Last name" />
-                    <h:inputText value="#{studentBean.studentSelected.lastName}" />
+                    <p:inputText value="#{studentBean.studentSelected.lastName}" />
                 </p:panelGrid>
-                <f:facet name="footer">
-                    <p:commandButton value="Add" actionListener="#{studentBean.addStudent}"
-                                     update="display,:studentsListForm:studentsDataTable" oncomplete="PF('studentDialog').hide();" />
-                </f:facet>
+
+                <p:commandButton value="Add" actionListener="#{studentBean.add}"
+                                 update="display,:studentsListForm:studentsDataTable" oncomplete="PF('studentDialog').hide();"
+                                 style="margin-top:10px;" />
             </p:outputPanel>
         </h:form>
     </p:dialog>

@@ -20,7 +20,12 @@ public class StudentDAOImpl extends GenericDAO implements StudentDAO {
 
     @Override
     public void save(Student student) {
-        em.persist(student);
+        // Asegurarse de que Address y Contact estén correctamente persistidos
+        if (student.getAddress() != null && student.getContact() != null) {
+            em.persist(student);
+        } else {
+            throw new IllegalArgumentException("Address or Contact is null");
+        }
     }
 
     @Override
