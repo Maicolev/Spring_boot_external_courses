@@ -9,8 +9,8 @@ import java.io.Serializable;
 public class Contact implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "contact_seq")
-    @SequenceGenerator(name = "contact_seq", sequenceName = "contact_seq", allocationSize = 1)
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "contact_seq")
+    //@SequenceGenerator(name = "contact_seq", sequenceName = "contact_seq", allocationSize = 1)
     @Column(name = "id_contact", nullable = false)
     private Long id;
 
@@ -28,6 +28,8 @@ public class Contact implements Serializable {
     public Long getId() {
         return id;
     }
+
+    public void setId(Long id) {this.id = id;}
 
     public String getPhone() {
         return phone;

@@ -8,13 +8,14 @@ import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import org.primefaces.event.RowEditEvent;
+import service.interfaces.AddressService;
+import service.interfaces.ContactService;
 import service.interfaces.StudentService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
-
 @Named("studentBean")
 @RequestScoped
 public class StudentBean {
@@ -23,6 +24,12 @@ public class StudentBean {
 
     @Inject
     private StudentService studentService;
+
+    @Inject
+    private AddressService addressService;
+
+    @Inject
+    private ContactService contactService;
 
     private Student studentSelected;
 
@@ -44,7 +51,7 @@ public class StudentBean {
         studentService.update(student);
     }
 
-    public Student getStudentSelected () {
+    public Student getStudentSelected() {
         return studentSelected;
     }
 
@@ -65,29 +72,34 @@ public class StudentBean {
 
         // Verificar que los objetos Address y Contact estén correctamente inicializados
         if (studentSelected.getAddress() != null && studentSelected.getContact() != null) {
-            logger.info("street: "     + studentSelected.getAddress().getStreet());
-            logger.info("Id contact: " + studentSelected.getContact().getId());
-            logger.info("email contact: " + studentSelected.getContact().getEmail());
-            logger.info("Id address: " + studentSelected.getAddress().getId());
+            //logger.info("street: "     + studentSelected.getAddress().getStreet());
+
+            // Persistir Address y Contact si no están ya persistidos
+
+            if (studentSelected.getContact().getId() == null) {
+                logger.info("pre contact id: "     + studentSelected.getContact().getId());
+                contactService.save(studentSelected.getContact());
+                logger.info("post contact id: "     + studentSelected.getContact().getId());
+            }
+
+            if (studentSelected.getAddress().getId() == null) {
+                logger.info("pre address id: "     + studentSelected.getAddress().getId());
+                addressService.save(studentSelected.getAddress());
+                logger.info("post address id: "     + studentSelected.getAddress().getId());
+            }
+
+            //studentSelected.setAddress(studentSelected.getAddress());
 
             // Guarda el estudiante
             this.studentService.save(studentSelected);
             this.students.add(studentSelected);
 
-            // Reiniciar para la siguiente adición
-            this.studentSelected = new Student();
-            this.studentSelected.setAddress(new Address());
-            this.studentSelected.setContact(new Contact());
+            logger.info("post save address id: "     + studentSelected.getAddress().getId());
+
         } else {
             logger.error("Address or Contact is not initialized.");
         }
-    }
-
-
-    public void remove() {
-        this.studentService.delete(studentSelected);
-        this.students.remove(this.studentSelected);
-        this.studentSelected = null;
+        restartStudentSelected();
     }
 
     public void restartStudentSelected() {

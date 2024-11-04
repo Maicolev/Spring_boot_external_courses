@@ -1,6 +1,8 @@
 package service.impl;
 
 import data.interfaces.StudentDAO;
+import domain.Address;
+import domain.Contact;
 import domain.Student;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;

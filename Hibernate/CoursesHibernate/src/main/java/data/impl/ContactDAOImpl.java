@@ -3,6 +3,7 @@ package data.impl;
 import data.interfaces.ContactDAO;
 import domain.Contact;
 import jakarta.ejb.Stateless;
+import jakarta.transaction.Transactional;
 
 import java.util.List;
 
@@ -19,8 +20,14 @@ public class ContactDAOImpl extends GenericDAO implements ContactDAO {
     }
 
     @Override
+    @Transactional
     public void save(Contact contact) {
-        em.persist(contact);
+        if (contact.getId() == null) {
+            em.persist(contact);
+            em.flush();
+        } else {
+            em.merge(contact);
+        }
     }
 
     @Override

@@ -12,8 +12,8 @@ import java.util.List;
 public class Student implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_seq")
-    @SequenceGenerator(name = "student_seq", sequenceName = "student_seq", allocationSize = 1)
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_seq")
+    //@SequenceGenerator(name = "student_seq", sequenceName = "student_seq", allocationSize = 1)
     @Column(name = "id_student", nullable = false)
     private Long id;
 
@@ -41,6 +41,8 @@ public class Student implements Serializable {
     public Long getId() {
         return id;
     }
+
+    public void setId(Long id) {this.id = id;}
 
     public Address getAddress() {
         return address;

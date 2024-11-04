@@ -118,6 +118,9 @@
         <h:form id="dialogForm">
             <p:outputPanel id="studentDetail" style="text-align: center">
                 <p:panelGrid id="display" columns="2" columnClasses="label,value">
+                    <h:outputText value="Id address" />
+                    <p:inputText value="#{studentBean.studentSelected.address.id}" />
+
                     <h:outputText value="Street" />
                     <p:inputText value="#{studentBean.studentSelected.address.street}" />
 
@@ -127,11 +130,17 @@
                     <h:outputText value="State" />
                     <p:inputText value="#{studentBean.studentSelected.address.state}" />
 
+                    <h:outputText value="Id contact" />
+                    <p:inputText value="#{studentBean.studentSelected.contact.id}" />
+
                     <h:outputText value="Phone" />
                     <p:inputText value="#{studentBean.studentSelected.contact.phone}" />
 
                     <h:outputText value="Email" />
                     <p:inputText value="#{studentBean.studentSelected.contact.email}" />
+
+                    <h:outputText value="Id student" />
+                    <p:inputText value="#{studentBean.studentSelected.id}" />
 
                     <h:outputText value="Name" />
                     <p:inputText value="#{studentBean.studentSelected.name}" />

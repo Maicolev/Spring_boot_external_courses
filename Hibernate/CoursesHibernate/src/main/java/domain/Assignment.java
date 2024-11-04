@@ -9,8 +9,8 @@ import java.io.Serializable;
 public class Assignment implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "assignment_seq")
-    @SequenceGenerator(name = "assignment_seq", sequenceName = "assignment_seq", allocationSize = 1)
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "assignment_seq")
+    //@SequenceGenerator(name = "assignment_seq", sequenceName = "assignment_seq", allocationSize = 1)
     @Column(name = "id_assignment", nullable = false)
     private Long id;
 
@@ -27,6 +27,7 @@ public class Assignment implements Serializable {
     public Long getId() {
         return id;
     }
+    public void setId(Long id) {this.id = id;}
 
     public Student getStudent() {
         return student;

@@ -10,8 +10,8 @@ import java.util.List;
 public class Course implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "course_seq")
-    @SequenceGenerator(name = "course_seq", sequenceName = "course_seq", allocationSize = 1)
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "course_seq")
+    //@SequenceGenerator(name = "course_seq", sequenceName = "course_seq", allocationSize = 1)
     @Column(name = "id_course", nullable = false)
     private Long id;
 
@@ -32,6 +32,8 @@ public class Course implements Serializable {
     public Long getId() {
         return id;
     }
+
+    public void setId(Long id) {this.id = id;}
 
     public String getCourseName() {
         return courseName;
