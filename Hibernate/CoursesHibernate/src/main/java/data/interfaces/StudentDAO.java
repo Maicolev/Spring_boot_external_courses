@@ -9,8 +9,6 @@ public interface StudentDAO {
 
     public Student findById(Student Student);
 
-    Student findStudentByEmail(Student Student);
-
     public void save(Student Student);
 
     public void delete(Student Student);

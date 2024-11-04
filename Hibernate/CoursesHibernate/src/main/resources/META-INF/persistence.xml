@@ -7,5 +7,16 @@
 
 <persistence-unit name="CoursesPersistence" transaction-type="JTA">
     <jta-data-source>jdbc/Courses</jta-data-source>
+    <class>domain.Contact</class>
+    <class>domain.Course</class>
+    <class>domain.Assignment</class>
+    <class>domain.Student</class>
+    <class>domain.Address</class>
+    <!-- Añade todas tus clases de entidades aquí -->
+    <properties>
+        <property name="javax.persistence.schema-generation.database.action" value="create"/>
+        <property name="eclipselink.ddl-generation" value="create-tables"/>
+        <property name="eclipselink.ddl-generation.output-mode" value="database"/>
+    </properties>
 </persistence-unit>
 </persistence>

@@ -9,8 +9,6 @@ public interface ContactDAO {
 
     public Contact findById(Contact Contact);
 
-    Contact findContactByEmail(Contact Contact);
-
     public void save(Contact Contact);
 
     public void delete(Contact Contact);

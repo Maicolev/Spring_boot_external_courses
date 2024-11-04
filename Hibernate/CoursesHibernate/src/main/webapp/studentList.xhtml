@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Students list</title>
+</h:head>
+<h:body>
+    <p:ajaxStatus style="width: 16px;height: 16px;" id="ajaxStatusPanel">
+        <f:facet name="start">
+            <!-- Puede agregar contenido aquí para mostrar al inicio de la solicitud AJAX -->
+        </f:facet>
+
+        <f:facet name="complete">
+            <h:outputText value="complete" />
+        </f:facet>
+    </p:ajaxStatus>
+
+    <h:form id="studentsListForm">
+        <p:growl id="messages" showDetail="true" />
+        <p:messages/>
+
+        <p:dataTable id="studentsDataTable" value="#{studentBean.students}" var="student" editable="true" rowKey="#{student.id}"
+                     selection="#{studentBean.studentSelected}" selectionMode="single" paginator="true" rows="10">
+
+            <f:facet name="header">
+                Students list
+            </f:facet>
+
+            <p:column headerText="Id">
+                <h:outputText value="#{student.id}" />
+            </p:column>
+
+            <p:column headerText="Address">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{student.address.street}, #{student.address.city}, #{student.address.state}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{student.address.street}" />
+                        <p:inputText value="#{student.address.city}" />
+                        <p:inputText value="#{student.address.state}" />
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Contact">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{student.contact.phone}, #{student.contact.email}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{student.contact.phone}" />
+                        <p:inputText value="#{student.contact.email}" />
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Name">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{student.name}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{student.name}" />
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Last Name">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{student.lastName}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{student.lastName}" />
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Assignments">
+                <ui:repeat value="#{student.assignments}" var="assignment">
+                    <h:panelGrid columns="2">
+                        <h:outputText value="Course:" />
+                        <h:outputText value="#{assignment.course.courseName}" />
+
+                        <h:outputText value="Turn:" />
+                        <h:outputText value="#{assignment.turn}" />
+                    </h:panelGrid>
+                </ui:repeat>
+            </p:column>
+
+            <p:column headerText="Options" style="width: 50px">
+                <p:rowEditor/>
+            </p:column>
+
+            <f:facet name="footer">
+                <p:commandButton value="Go back" action="index" />
+                <p:spacer height="5px"/>
+                <p:commandButton value="Add" actionListener="#{studentBean.restartStudentSelected}"
+                                 update=":dialogForm" oncomplete="PF('studentDialog').show()" />
+            </f:facet>
+
+            <p:ajax event="rowEdit" listener="#{studentBean.editListener}"/>
+        </p:dataTable>
+
+        <p:contextMenu for="studentsDataTable">
+            <p:menuitem value="Remove" update="studentsListForm:studentsDataTable" icon="ui-icon-close"
+                        actionListener="#{studentBean.remove}" />
+        </p:contextMenu>
+    </h:form>
+
+    <p:dialog id="studentDlg" widgetVar="studentDialog" header="Add Student" modal="true" showEffect="fade" hideEffect="fade"
+              resizable="false">
+        <h:form id="dialogForm">
+            <p:outputPanel id="studentDetail" style="text-align: center">
+                <p:panelGrid id="display" columns="2" columnClasses="label,value">
+                    <h:outputText value="Id address" />
+                    <p:inputText value="#{studentBean.studentSelected.address.id}" />
+
+                    <h:outputText value="Street" />
+                    <p:inputText value="#{studentBean.studentSelected.address.street}" />
+
+                    <h:outputText value="City" />
+                    <p:inputText value="#{studentBean.studentSelected.address.city}" />
+
+                    <h:outputText value="State" />
+                    <p:inputText value="#{studentBean.studentSelected.address.state}" />
+
+                    <h:outputText value="Id contact" />
+                    <p:inputText value="#{studentBean.studentSelected.contact.id}" />
+
+                    <h:outputText value="Phone" />
+                    <p:inputText value="#{studentBean.studentSelected.contact.phone}" />
+
+                    <h:outputText value="Email" />
+                    <p:inputText value="#{studentBean.studentSelected.contact.email}" />
+
+                    <h:outputText value="Id student" />
+                    <p:inputText value="#{studentBean.studentSelected.id}" />
+
+                    <h:outputText value="Name" />
+                    <p:inputText value="#{studentBean.studentSelected.name}" />
+
+                    <h:outputText value="Last name" />
+                    <p:inputText value="#{studentBean.studentSelected.lastName}" />
+                </p:panelGrid>
+
+                <p:commandButton value="Add" actionListener="#{studentBean.add}"
+                                 update="display,:studentsListForm:studentsDataTable" oncomplete="PF('studentDialog').hide();"
+                                 style="margin-top:10px;" />
+            </p:outputPanel>
+        </h:form>
+    </p:dialog>
+
+</h:body>
+</html>

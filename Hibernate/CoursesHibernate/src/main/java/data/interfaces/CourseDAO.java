@@ -9,8 +9,6 @@ public interface CourseDAO {
 
     public Course findById(Course Course);
 
-    Course findCourseByEmail(Course Course);
-
     public void save(Course Course);
 
     public void delete(Course Course);

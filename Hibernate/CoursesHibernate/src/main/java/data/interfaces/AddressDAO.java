@@ -9,8 +9,6 @@ public interface AddressDAO {
 
     public Address findById(Address Address);
 
-    Address findAddressByEmail(Address Address);
-
     public void save(Address Address);
 
     public void delete(Address Address);

@@ -1,18 +1,21 @@
 package domain;
 
+
+
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
+@NamedQuery(name = "Student.findAll", query = "SELECT a FROM Student a")
 public class Student implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_seq")
-    @SequenceGenerator(name = "student_seq", sequenceName = "student_seq", allocationSize = 1)
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_seq")
+    //@SequenceGenerator(name = "student_seq", sequenceName = "student_seq", allocationSize = 1)
     @Column(name = "id_student", nullable = false)
-    private Long idStudent;
+    private Long id;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_address", referencedColumnName = "id_address")
@@ -36,22 +39,24 @@ public class Student implements Serializable {
         this.address = idAddress;
     }
     public Long getId() {
-        return idStudent;
+        return id;
     }
 
-    public Address getIdAddress() {
+    public void setId(Long id) {this.id = id;}
+
+    public Address getAddress() {
         return address;
     }
 
-    public void setIdAddress(Address idAddress) {
+    public void setAddress(Address idAddress) {
         this.address = idAddress;
     }
 
-    public Contact getIdContact() {
+    public Contact getContact() {
         return contact;
     }
 
-    public void setIdContact(Contact idContact) {
+    public void setContact(Contact idContact) {
         this.contact = idContact;
     }
 
@@ -77,5 +82,17 @@ public class Student implements Serializable {
 
     public void setAssignments(List<Assignment> assignments) {
         this.assignments = assignments;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", address=" + address +
+                ", contact=" + contact +
+                ", name='" + name + '\'' +
+                ", assignments=" + assignments +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 }
